@@ -1,7 +1,6 @@
 package uk.gov.justice.digital.courtfinder.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.WebDriver;
 
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;

@@ -2,7 +2,6 @@ package uk.gov.justice.digital.courtfinder.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By.ByXPath;
 
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
@@ -11,7 +10,6 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	private By searchPostcode = new By.ByXPath(".//*[@name='postcode']");
 	
 	private By filterAllCourts = new By.ById("aol-0");
-	private By filterYourLegalProblem = new By.ByXPath("");
 	private By filterAdoption = new By.ByXPath(".//*[@value='Adoption']");
 	private By filterBankruptcy = new By.ByXPath(".//*[@value='Bankruptcy']");
 	private By filterCivilPartnerships = new By.ByXPath(".//*[@value='Civil partnership']");
@@ -50,9 +48,7 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 		click(filterAllCourts);
 	}
 
-	private void selectYourLegalProm() throws Exception{
-		click(filterYourLegalProblem);
-	}
+
 	
 	private void selectAdoption() throws Exception{
 		click(filterAdoption);

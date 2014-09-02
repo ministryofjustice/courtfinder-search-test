@@ -2,10 +2,7 @@ package uk.gov.justice.digital.courtfinder.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By.ById;
-import org.openqa.selenium.By.ByXPath;
 
-import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
 public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 
@@ -32,7 +29,6 @@ public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 	}
 	
 	public int getCourtIndex(String courtName) throws Exception{
-		int index = -1;
 		String court = "";
         //loop results
 		for (int resultIndex = 1; resultIndex <= getNumberOfResults(); resultIndex++ ){
