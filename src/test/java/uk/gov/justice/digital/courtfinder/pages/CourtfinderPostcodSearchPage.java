@@ -28,7 +28,7 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	
 	private By continueButton = new By.ById("continue");
 	
-	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/form/fieldset/label[1]/div[1]");
+	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/form/div[1]/label/div[1]");
 	private String expectedPageTitle = "Search by postcode";
 	
 	private By errorNoPostcodeEntered = new By.ByXPath(".//*[@class='validation-error']");
