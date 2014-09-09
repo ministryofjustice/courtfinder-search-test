@@ -7,9 +7,9 @@ import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
 public class CourtFinderAddressSearchPage extends SeleniumPage{
 	
-	private By pageTitle = new By.ByXPath(".//*[@id='content']/form/fieldset/label/div[1]");
+	private By pageTitle = new By.ByXPath(".//*[@class='form-label-bold']");
 	private String expectedPageTitle = "Search by name or address";
-	private By addressInput = new By.ByXPath(".//*[@id='content']/form/fieldset/label/input");
+	private By addressInput = new By.ByXPath(".//*[@name='q']");
 
 	private By continueButton = new By.ByXPath(".//*[@id='continue']");
 

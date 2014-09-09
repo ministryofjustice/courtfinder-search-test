@@ -2,6 +2,7 @@ package uk.gov.justice.digital.courtfinder.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By.ByXPath;
 
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
@@ -33,6 +34,11 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	
 	private By errorNoPostcodeEntered = new By.ByXPath(".//*[@class='validation-error']");
 	private String expectedErrorTextNoPostcodeEntered = "You did not enter a postcode. Please try again.";
+	private By legalProblems = new By.ByXPath(".//*[@id='aol-one']");
+	
+	public void clickLegalProblems() throws Exception{
+		click(legalProblems);
+	}
 	
 	public boolean verifyOnPage() throws Exception{
 		waitForPageLoaded();
@@ -115,7 +121,7 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	}
 	
 	private void setSpecificAreaOfLaw(String areaOfLaw) throws Exception{
-		//selectYourLegalProm();
+		clickLegalProblems();
 		if (areaOfLaw.equalsIgnoreCase("adoption"))
 			selectAdoption();
 		else if (areaOfLaw.equalsIgnoreCase("bankruptcy"))
