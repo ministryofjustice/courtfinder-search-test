@@ -2,7 +2,10 @@ package uk.gov.justice.digital.courtfinder.steps;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -32,6 +35,13 @@ public class CourtFinderAddressSearchSteps {
 	    PageFactory.getCourtFinderAddressSearchPage(driver).clickContinueButton();
 	    PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyOnPage();
 	}
+	
+	@When("^I enter \"(.*?)\" and search$")
+	public void i_enter_and_search(String searchText) throws Throwable {
+	    PageFactory.getCourtFinderAddressSearchPage(driver).setAddress(searchText);
+	    PageFactory.getCourtFinderAddressSearchPage(driver).clickContinueButton();
+	    PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyOnPage();;
+	}
 
 	@Then("^I will be returned a single court result \"(.*?)\"$")
 	public void i_will_be_returned_a_single_court_result(String court) throws Throwable {
@@ -55,6 +65,11 @@ public class CourtFinderAddressSearchSteps {
 	public void i_am_prompted_to_enter_a_address() throws Throwable {
 	    assertTrue("No error message displayed for not entering a address",
 	    		   PageFactory.getCourtFinderAddressSearchPage(driver).verifyErrorPromptEnterAddress());
-	}	
+	}
+	
+	@Then("^the results should be listed in the following order:$")
+	public void the_results_should_be_listed_in_the_following_order(List<String> courtResults) throws Throwable {
+		assertTrue(PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyCourtResultsSortOrder(courtResults));
+	}
 
 }

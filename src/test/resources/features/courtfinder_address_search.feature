@@ -1,4 +1,4 @@
-@todo
+
 Feature: As a citizen I need to find a court by name, address, county so I can find useful information to help me
          
 
@@ -108,11 +108,31 @@ Scenario Outline: address search that returns no results
               Examples:
               
               |invalidaddress|
-              |zzzzzzzzzz    |              
-               
+              |zzzzzzzzzz    | 
+              
 # error message :
-# Sorry, there are no results for xxxxx. Please check and try another name or addresss.              
+# Sorry, there are no results for xxxxx. Please check and try another name or addresss.                
 
+@todo              
+Scenario: Sort order will be venue,town,street,county - sub sort is on areas of law
 
+               Given I am on the courtfinder address search page
+               When I enter "Derby" and search  
+               Then the results should be listed in the following order:
+               |court                                           |                    
+               |Derby Combined Court Centre                     |
+               |Derby Social Security and Child Support Tribunal|
+               |Derby Magistrates' Court                        |
+
+@todo              
+Scenario: Sort order will be venue,town,street,county - sub sort is on areas of law
+
+               Given I am on the courtfinder address search page
+               When I enter "street" and search  
+               Then the results should be listed in the following order:
+               |court                                           |                    
+               |Chester-le-Street Magistrates' Court            |
+               |Consett Magistrates' Court                      |
+               |Durham Magistrates' Court                       |
 
                   

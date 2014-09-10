@@ -1,5 +1,7 @@
 package uk.gov.justice.digital.courtfinder.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -25,5 +27,16 @@ public class CourtFinderAddressSearchResultPage extends CourtFinderResultPage{
 	public boolean verifyErrorNoResultsFound() throws Exception {
 		return isTextContainedInInnerText(errorInvalidAddress, expectedErrorTextInvalidAddress);
 	}
+
+
+	public boolean verifyCourtResultsSortOrder(List<String> courtResults) throws Exception {
+		String courtName = "";
+		for (int resultIndex = 1; resultIndex <= courtResults.size()-1; resultIndex++ ){
+		   courtName = (getCourtNameAtIndex(resultIndex));
+           if (!courtName.equalsIgnoreCase(courtResults.get(resultIndex)))
+				  return false;
+		}
+		return true;
+	}	
 	
 }
