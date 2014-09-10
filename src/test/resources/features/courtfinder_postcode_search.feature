@@ -1,4 +1,4 @@
-
+@todo
 Feature: As a user I need to be able to make a postcode and area of law search so that it will give a list of the closest court/tribunals 
 
 
@@ -107,7 +107,7 @@ Scenario Outline: Each court result should show the dx and court number
           |BB2 1AA  |All courts and tribunals        |Accrington Magistrates' Court                    |742020 Blackburn 10|1725|
  
 
-@needtoclarify 
+
 Scenario Outline: Each court result should show the postal address 
 
           Given I am on the courtfinder postcode search page
@@ -115,9 +115,8 @@ Scenario Outline: Each court result should show the postal address
           Then for the "<court>" the "<postaladdress>" is displayed
           
           Examples:
-          |postcode|law              |court                                            |dx|courtnumber|
-          |SW1H9AJ  |Adoption        |Inner London Family Proceedings Court            |||
-          |BT21     |Immigration     |Glasgow Tribunal Hearing Centre                  |||
+          |postcode|law              |court                          |postaladdress                                    |
+          |BT21     |Immigration     |Glasgow Tribunal Hearing Centre|215 Bothwell Street                                          |
            
 Scenario Outline: The number of results found for a postcode search should be displayed   
 

@@ -2,21 +2,36 @@ package uk.gov.justice.digital.courtfinder.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By.ByXPath;
 
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
 public class CourtFinderResultPage extends SeleniumPage {
 	
-	protected String courtTitle = ".//*[@id='content']/div/div/ul/li[%d]/div[1]/a";
-	protected By numberOfResults = new By.ById("number-of-results");		
+	protected By courts = new By.ByXPath(".//*[@id='court-results']/li");
+	protected String courtTitle = ".//*[@id='court-results']/li[%d]//*[@class='court-link']/a";
+	protected String courtAddress = ".//*[@id='court-results']/li[%d]//*[@class='court-address']";
+	protected String courtTown   = ".//*[@id='court-results']/li[1]//*[@class='court-town']";
+	protected String courtPostcode   = ".//*[@id='court-results']/li[1]//*[@class='court-postcode']";
+	protected By numberOfResults = new By.ById("number-of-results");	
+	protected String courtAreaOfLaws = ".//*[@id='court-results']/li[%d]//*[@class='court-aol']/ul/li";
+	protected String courtAreaOfLaw = ".//*[@id='court-results']/li[%d]//*[@class='court-aol']/ul/li[%d]/span";
 
 	public CourtFinderResultPage(WebDriver driver) {
 		super(driver);
 	}
+
+	public int getNumberOfResults() throws Exception{
+		try
+		{
+			return getElements(courts).size();
+		}catch( Exception e){
+			return 0;
+		}
+	}	
 	
 	
-	
-	public int getNumberOfResults() throws NumberFormatException, Exception{
+	public int getNumberOfResultsShownInTextLabel() throws Exception{
 		String result = "";
 		try
 		{
@@ -52,6 +67,36 @@ public class CourtFinderResultPage extends SeleniumPage {
 	public String getCourtNameAtIndex(int index) throws Exception{
 		String text = getText(new By.ByXPath(String.format(courtTitle, index))); 
 		return text;
-	}	
+	}
+	
+	public String getCourtAddressAtIndex(int index) throws Exception{
+		String text = getText(new By.ByXPath(String.format(courtAddress, index))); 
+		return text;
+	}
+	
+	public String getCourtPostcodeAtIndex(int index) throws Exception{
+		String text = getText(new By.ByXPath(String.format(courtPostcode, index))); 
+		return text;
+	}
+	
+	public String getCourtTownAtIndex(int index) throws Exception{
+		String text = getText(new By.ByXPath(String.format(courtTown, index))); 
+		return text;
+	}
+	
+	public int getNumberOfAreasOfCourtForCourt(int courtIndex){
+		try
+		{
+			return getElements(new ByXPath(String.format(courtAreaOfLaws,courtIndex))).size();
+		}catch( Exception e){
+			return 0;
+		}		
+	}
+	
+	public String getCourtTownAtIndex(int courtIndex, int courtAreaOfLawIndex) throws Exception{
+		String text = getText(new By.ByXPath(String.format(courtAreaOfLaw, courtIndex,courtAreaOfLawIndex))); 
+		return text;
+	}
+	
 
 }

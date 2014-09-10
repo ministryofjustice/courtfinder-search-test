@@ -16,7 +16,7 @@ public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 
 	private String courtDX = ".//*[@id='content']/div/div/ul/li[%d]/div[2]/p[2]/span[2]";
 	private String courtNumber = ".//*[@id='content']/div/div/ul/li[%d]/div[2]/p[2]/span[4]";
-	private String courtAddress = ".//*[@id='content']/div/div/ul/li[%d]/div[2]/p[1]";
+	
 
 	
 	public boolean verifyOnPage() throws Exception{
@@ -76,7 +76,7 @@ public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 	}
 
 	public boolean verifyCourtAddress(String court, String courtaddress) throws Exception {
-		if (isTextContainedInInnerText(new By.ByXPath(String.format(courtAddress, getCourtIndex(court))), courtaddress))
+		if (getCourtAddressAtIndex(getCourtIndex(court)).contains(courtaddress))
 			return true;
 		return false;
 	}

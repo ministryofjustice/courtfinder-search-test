@@ -1,4 +1,4 @@
-
+@todo
 Feature: As a citizen I need to find a court by name, address, county so I can find useful information to help me
          
 
@@ -33,7 +33,7 @@ Scenario Outline: Complete court name returns individual court entry in the resu
               
                
                |court                 |dx              |courtnumber|
-               |Central Criminal Court|46700 Old Bailey|413|                
+               |Central Criminal Court|46700 Old Bailey|413        |                
                   
                             
                   
@@ -113,7 +113,7 @@ Scenario Outline: address search that returns no results
 # error message :
 # Sorry, there are no results for xxxxx. Please check and try another name or addresss.                
 
-@todo              
+             
 Scenario: Sort order will be venue,town,street,county - sub sort is on areas of law
 
                Given I am on the courtfinder address search page
@@ -124,7 +124,7 @@ Scenario: Sort order will be venue,town,street,county - sub sort is on areas of 
                |Derby Social Security and Child Support Tribunal|
                |Derby Magistrates' Court                        |
 
-@todo              
+             
 Scenario: Sort order will be venue,town,street,county - sub sort is on areas of law
 
                Given I am on the courtfinder address search page
@@ -135,4 +135,15 @@ Scenario: Sort order will be venue,town,street,county - sub sort is on areas of 
                |Consett Magistrates' Court                      |
                |Durham Magistrates' Court                       |
 
-                  
+
+Scenario Outline: Each court result should show the postal address 
+
+          Given I am on the courtfinder address search page
+          When I enter a town, city or county "<town_city_county>" and search
+          Then for the "<court>" the "<postaladdress>" is displayed
+          
+          Examples:
+          |town_city_county   |court                       |postaladdress                                   |
+          |stevenage          |Stevenage Magistrates' Court|Sish Lane                           | 
+          
+                          
