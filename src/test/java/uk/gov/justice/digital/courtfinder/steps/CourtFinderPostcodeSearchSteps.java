@@ -3,6 +3,7 @@ package uk.gov.justice.digital.courtfinder.steps;
 import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.WebDriver;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -109,6 +110,11 @@ public class CourtFinderPostcodeSearchSteps {
 	@Then("^for the \"(.*?)\" the \"(.*?)\" is displayed$")
 	public void for_the_the_is_displayed(String court, String courtaddress) throws Throwable {
 	   assertTrue(PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyCourtAddress(court,courtaddress));
-	}	
+	}
+	
+	@Then("^I am redirected to the postcode results with the court \"(.*?)\" first in the results$")
+	public void i_am_redirected_to_the_postcode_results_with_the_court_first_in_the_results(String courtName) throws Throwable {
+	    assertTrue("court not found",(PageFactory.getCourtFinderAddressSearchResultPage(driver).getCourtNameAtIndex(1).equalsIgnoreCase(courtName)));
+	}
 
 }

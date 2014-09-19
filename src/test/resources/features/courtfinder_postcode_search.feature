@@ -64,8 +64,8 @@ Scenario Outline: Entering a valid Northern Ireland postcode and Immigration
           Then I am redirected to the postcode results displaying the closest "<courts>"
           
           Examples:
-          |postcode|law              |courts                         |
-          |BT21|Immigration          |Glasgow Tribunal Hearing Centre|
+          |postcode|law              |courts                                          |
+          |BT21|Immigration          |Glasgow Tribunal Hearing Centre (Eagle Building)|
 
                 
 Scenario Outline: postcode search is not case sensitive 
@@ -93,7 +93,7 @@ Scenario Outline: Each court name should be a link to the respective court detai
           Examples:
           |postcode|law              |court                                            |
           |SW1H9AJ  |Adoption        |Inner London Family Proceedings Court            |
-          |BT21     |Immigration     |Glasgow Tribunal Hearing Centre                  |
+          |BT21     |Immigration     |Glasgow Tribunal Hearing Centre (Eagle Building) |
 
 
 Scenario Outline: Each court result should show the dx and court number  
@@ -116,7 +116,7 @@ Scenario Outline: Each court result should show the postal address
           
           Examples:
           |postcode|law              |court                          |postaladdress                                    |
-          |BT21     |Immigration     |Glasgow Tribunal Hearing Centre|215 Bothwell Street                                          |
+          |BT21     |Immigration     |Glasgow Tribunal Hearing Centre (Eagle Building)|215 Bothwell Street                                          |
            
 Scenario Outline: The number of results found for a postcode search should be displayed   
 
@@ -126,7 +126,7 @@ Scenario Outline: The number of results found for a postcode search should be di
           
           Examples:
           |postcode |law              |result|
-          |SW1H9AJ  |Adoption         |10    |
+          |SW1H9AJ  |Adoption         |2     |
           |BT21     |Immigration      |1     |
           |SE1 6AZ  |Crime            |10    |
 
@@ -144,5 +144,65 @@ Scenario Outline: Error for postcode returning no results
           |CD2                 |Crime                             |
           |CX3                 |All courts and tribunals          |
           
-                
-                              
+ @development              
+ Scenario Outline: postcode search returns first court name
+
+          Given I am on the courtfinder postcode search page
+          When I enter a postcode "<postcode>" and area of law "<law>" and select continue
+          Then I am redirected to the postcode results with the court "<court>" first in the results
+          
+          Examples:
+          |postcode|law              |court                                                     |
+|AL10 8RU|Housing possession|St Albans County Court|
+|AL4 0SW|Housing possession|St Albans County Court|
+|AL7 4SQ|Housing possession|Hertford County Court and Family Court|
+|B13 8BA|Housing possession|Birmingham Civil and Family Justice Centre|
+|B15 1UJ|Housing possession|Birmingham Civil and Family Justice Centre|
+|B15 3LH|Housing possession|Birmingham Civil and Family Justice Centre|
+|B16 8RF|Housing possession|Birmingham Civil and Family Justice Centre|
+|B18 4JT|Housing possession|Birmingham Civil and Family Justice Centre|
+|B18 7EN|Housing possession|Birmingham Civil and Family Justice Centre|
+|B19 3TZ|Housing possession|Birmingham Civil and Family Justice Centre|
+|B2 4BS|Housing possession|Birmingham Civil and Family Justice Centre|
+|B2 4SP|Housing possession|Birmingham Civil and Family Justice Centre|
+|B20 2EX|Housing possession|Birmingham Civil and Family Justice Centre|
+|B25 8LP|Housing possession|Birmingham Civil and Family Justice Centre|
+|B26 2DS|Housing possession|Birmingham Civil and Family Justice Centre|
+|B27 7AP|Housing possession|Birmingham Civil and Family Justice Centre|
+|B27 7LS|Housing possession|Birmingham Civil and Family Justice Centre|
+|B28 1EN|Housing possession|Birmingham Civil and Family Justice Centre|
+|B28 8JY|Housing possession|Birmingham Civil and Family Justice Centre|
+|B3 2DE|Housing possession|Birmingham Civil and Family Justice Centre|
+|B33 0JJ|Housing possession|Birmingham Civil and Family Justice Centre|
+|B33 0UA|Housing possession|Birmingham Civil and Family Justice Centre|
+|B36 0UH|Housing possession|Birmingham Civil and Family Justice Centre|
+|B36 9TL|Housing possession|Birmingham Civil and Family Justice Centre|
+|B37 5HR|Housing possession|Birmingham Civil and Family Justice Centre|
+|B4 7RQ|Housing possession|Birmingham Civil and Family Justice Centre|
+|B40 1PQ|Housing possession|Birmingham Civil and Family Justice Centre|
+|B42 1LL|Housing possession|Birmingham Civil and Family Justice Centre|
+|B42 2HH|Housing possession|Birmingham Civil and Family Justice Centre|
+|B42 2QN|Housing possession|Birmingham Civil and Family Justice Centre|
+|B42 9FQ|Housing possession|Birmingham Civil and Family Justice Centre|
+|B45 9WL|Housing possession|Birmingham Civil and Family Justice Centre|
+|B47 5DP|Housing possession|Birmingham Civil and Family Justice Centre|
+|B48 7DB|Housing possession|Worcester Combined Court|
+|B48 7NF|Housing possession|Worcester Combined Court|
+|B5 7NF|Housing possession|Birmingham Civil and Family Justice Centre|
+|B50 4LH|Housing possession|Warwick Combined Court|
+|B61 0LA|Housing possession|Worcester Combined Court|
+|B61 7HZ|Housing possession|Worcester Combined Court|
+|B62 0JJ|Housing possession|Dudley County Court and Family Court|
+|B62 8EA|Housing possession|Dudley County Court and Family Court|
+|B62 8QW|Housing possession|Dudley County Court and Family Court|
+|B64 6DT|Housing possession|Dudley County Court and Family Court|
+|B65 0QW|Housing possession|Dudley County Court and Family Court|
+|B66 4DL|Housing possession|Birmingham Civil and Family Justice Centre|
+|B67 6HS|Housing possession|Birmingham Civil and Family Justice Centre|
+|B68 0PS|Housing possession|Birmingham Civil and Family Justice Centre|
+|B69 1EL|Housing possession|Birmingham Civil and Family Justice Centre|
+|B69 2JU|Housing possession|Birmingham Civil and Family Justice Centre|
+|B7 4SA|Housing possession|Birmingham Civil and Family Justice Centre|
+|B7 5LJ|Housing possession|Birmingham Civil and Family Justice Centre|
+|B75 5SU|Housing possession|Birmingham Civil and Family Justice Centre|
+|B76 1GU|Housing possession|Birmingham Civil and Family Justice Centre|                       

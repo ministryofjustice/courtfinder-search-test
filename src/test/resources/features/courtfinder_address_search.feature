@@ -77,7 +77,7 @@ Scenario Outline: Partial address (street name) will return courts with matching
               
 
               |streetname|courts|
-              |Tenters Street|Bury County Court and Family Court| 
+              |Tenters Street|Bury County Court| 
               |Little John Street|Chester Probate Sub-Registry|
               |London Road |Croydon Employment Tribunal|
               |Laneham Street|Scunthorpe County Court and Family Court|
@@ -132,8 +132,9 @@ Scenario: Sort order will be venue,town,street,county - sub sort is on areas of 
                Then the results should be listed in the following order:
                |court                                           |                    
                |Chester-le-Street Magistrates' Court            |
-               |Consett Magistrates' Court                      |
                |Durham Magistrates' Court                       |
+               |Consett Magistrates' Court                      |
+
 
 
 Scenario Outline: Each court result should show the postal address 
