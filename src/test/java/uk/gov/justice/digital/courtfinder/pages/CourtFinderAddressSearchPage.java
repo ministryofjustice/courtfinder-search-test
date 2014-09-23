@@ -13,15 +13,25 @@ public class CourtFinderAddressSearchPage extends SeleniumPage{
 
 	private By continueButton = new By.ByXPath(".//*[@id='continue']");
 
+	private By errorInvalidAddress= new By.ByXPath(".//*[@id='content']/div/section");
+	private String expectedErrorTextInvalidAddress = "Sorry, there are no results for ";
+	
+	
 	private By errorNoAddressEntered = new By.ByXPath(".//*[@class='validation-error']");
 	private String expectedErrorTextNoAddressEntered = "You did not enter a search term. Please try again.";
 
 	
 	public boolean verifyErrorPromptEnterAddress() throws Exception {
+
 		waitToGetElement(errorNoAddressEntered, HTTP_TIMEOUT);
 		return isTextContainedInInnerText(errorNoAddressEntered, expectedErrorTextNoAddressEntered);
+		
 	}
-	
+
+	public boolean verifyErrorPromptEnterInvalidAddress() throws Exception {
+		waitToGetElement(errorInvalidAddress, HTTP_TIMEOUT);
+		return isTextContainedInInnerText(errorInvalidAddress, expectedErrorTextInvalidAddress);
+	}	
 	
 	public CourtFinderAddressSearchPage(WebDriver driver) {
 		super(driver);

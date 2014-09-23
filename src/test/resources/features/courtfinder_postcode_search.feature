@@ -55,7 +55,7 @@ Scenario Outline: Entering an Northern Ireland postcode and area of law will ret
  #        |BT44    |High court              |
          |BT      |All courts and tribunals|
 
- 
+
 Scenario Outline: Entering a valid Northern Ireland postcode and Immigration
                   returns expected courts
 
@@ -144,7 +144,7 @@ Scenario Outline: Error for postcode returning no results
           |CD2                 |Crime                             |
           |CX3                 |All courts and tribunals          |
           
- @development              
+@development              
  Scenario Outline: postcode search returns first court name
 
           Given I am on the courtfinder postcode search page

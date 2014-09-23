@@ -58,7 +58,7 @@ public class CourtFinderAddressSearchSteps {
 	@Then("^I should be prompted that the address is invalid$")
 	public void i_should_be_prompted_that_the_address_is_invalid() throws Throwable {
         assertTrue("No error message displayed for entering an invalid address",
-     		   PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyErrorNoResultsFound());
+     		   PageFactory.getCourtFinderAddressSearchPage(driver).verifyErrorPromptEnterInvalidAddress());
 	}	
 	
 	@Then("^I am prompted to enter a address$")

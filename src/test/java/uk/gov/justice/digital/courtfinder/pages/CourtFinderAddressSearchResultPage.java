@@ -24,11 +24,6 @@ public class CourtFinderAddressSearchResultPage extends CourtFinderResultPage{
 		super(driver);
 	}
 
-	public boolean verifyErrorNoResultsFound() throws Exception {
-		return isTextContainedInInnerText(errorInvalidAddress, expectedErrorTextInvalidAddress);
-	}
-
-
 	public boolean verifyCourtResultsSortOrder(List<String> courtResults) throws Exception {
 		String courtName = "";
 		for (int resultIndex = 1; resultIndex <= courtResults.size()-1; resultIndex++ ){

@@ -8,11 +8,11 @@ public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 
 
 	
-	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/form/label[2]/div");
-	private String expectedPageTitle = "Filtered by courts or tribunals dealing with";
+	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/header/h1");
+	private String expectedPageTitle = "Find a court or tribunal";
 	
-	private By errorInvalidPostcode = new By.ByXPath(".//*[@id='content']/div/p");
-	private String expectedErrorTextInvalidPostcode = "Sorry, there are no results for";
+	private By errorInvalidPostcode = new By.ByXPath(".//*[@id='content']/div/section");
+	private String expectedErrorTextInvalidPostcode = "Sorry, your postcode";
 
 	private String courtDX = ".//*[@id='content']/div/div/ul/li[%d]/div[2]/p[2]/span[2]";
 	private String courtNumber = ".//*[@id='content']/div/div/ul/li[%d]/div[2]/p[2]/span[4]";
