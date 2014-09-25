@@ -17,20 +17,18 @@ public class CourtFinderAddressSearchPage extends SeleniumPage{
 	private String expectedErrorTextInvalidAddress = "Sorry, there are no results for ";
 	
 	
-	private By errorNoAddressEntered = new By.ByXPath(".//*[@class='validation-error']");
+	private By errorNoAddressEntered = new By.ByXPath(".//*[@id='content']/div[2]/div/section");
 	private String expectedErrorTextNoAddressEntered = "You did not enter a search term. Please try again.";
 
 	
 	public boolean verifyErrorPromptEnterAddress() throws Exception {
-
 		waitToGetElement(errorNoAddressEntered, HTTP_TIMEOUT);
 		return isTextContainedInInnerText(errorNoAddressEntered, expectedErrorTextNoAddressEntered);
 		
 	}
 
 	public boolean verifyErrorPromptEnterInvalidAddress() throws Exception {
-		waitToGetElement(errorInvalidAddress, HTTP_TIMEOUT);
-		return isTextContainedInInnerText(errorInvalidAddress, expectedErrorTextInvalidAddress);
+		return isTextPresent(expectedErrorTextInvalidAddress);
 	}	
 	
 	public CourtFinderAddressSearchPage(WebDriver driver) {
