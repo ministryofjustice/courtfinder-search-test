@@ -8,8 +8,8 @@ import org.openqa.selenium.WebDriver;
 
 public class CourtFinderAddressSearchResultPage extends CourtFinderResultPage{
 	
-	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/form/label/div[2]");
-	private String expectedPageTitle = "Enter part of the court or tribunal name or address.";
+	private By pageTitle = new By.ByXPath(".//*[@id='content']/div[2]/header/h1");
+	private String expectedPageTitle = "Find a court or tribunal";
 
 	private By errorInvalidAddress = new By.ByXPath(".//*[@id='content']/div/p");
 	private String expectedErrorTextInvalidAddress = "Sorry, there are no results for";
