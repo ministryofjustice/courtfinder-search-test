@@ -130,7 +130,8 @@ Scenario: Sort order will be venue,town,street,county - sub sort is on areas of 
                Given I am on the courtfinder address search page
                When I enter "street" and search  
                Then the results should be listed in the following order:
-               |court                                           |                    
+               |court                                           |
+               |Pocock Street Tribunal Hearing Centre           |                    
                |Chester-le-Street Magistrates' Court            |
                |Durham Magistrates' Court                       |
                |Consett Magistrates' Court                      |

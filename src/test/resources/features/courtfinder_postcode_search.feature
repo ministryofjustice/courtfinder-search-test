@@ -127,7 +127,7 @@ Scenario Outline: The number of results found for a postcode search should be di
           Examples:
           |postcode |law              |result|
           |SW1H9AJ  |Adoption         |2     |
-          |BT21     |Immigration      |1     |
+          |BT21     |Immigration      |2     |
           |SE1 6AZ  |Crime            |10    |
 
        
