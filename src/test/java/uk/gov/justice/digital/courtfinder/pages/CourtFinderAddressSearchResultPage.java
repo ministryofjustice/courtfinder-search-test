@@ -11,8 +11,6 @@ public class CourtFinderAddressSearchResultPage extends CourtFinderResultPage{
 	private By pageTitle = new By.ByXPath(".//*[@id='content']/div[2]/header/h1");
 	private String expectedPageTitle = "Find a court or tribunal";
 
-	private By errorInvalidAddress = new By.ByXPath(".//*[@id='content']/div/p");
-	private String expectedErrorTextInvalidAddress = "Sorry, there are no results for";
 	
 	
 	public boolean verifyOnPage() throws Exception{

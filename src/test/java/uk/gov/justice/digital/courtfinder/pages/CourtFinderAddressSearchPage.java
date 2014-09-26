@@ -13,7 +13,6 @@ public class CourtFinderAddressSearchPage extends SeleniumPage{
 
 	private By continueButton = new By.ByXPath(".//*[@id='continue']");
 
-	private By errorInvalidAddress= new By.ByXPath(".//*[@id='content']/div/section");
 	private String expectedErrorTextInvalidAddress = "Sorry, there are no results for ";
 	
 	
