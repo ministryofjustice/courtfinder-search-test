@@ -1,7 +1,7 @@
-@todo
+
 Feature: As a citizen I need to find a court by name, address, county so I can find useful information to help me
          
-
+@development
 Scenario: No address entered and user requests search prompts error
 
               Given I am on the courtfinder address search page

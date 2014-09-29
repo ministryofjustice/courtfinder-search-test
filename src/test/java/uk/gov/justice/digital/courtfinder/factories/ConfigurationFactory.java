@@ -27,8 +27,8 @@ public class ConfigurationFactory {
 	public final static String localEnvironment = "LOCAL";
 	
 	public static String getEnvironment(){
-		if (!(System.getProperty("ENVIRONMENT") == null) )
-			   return System.getProperty("ENVIRONMENT").toUpperCase();
+		if (!(System.getProperty("environment") == null) )
+			   return System.getProperty("environment").toUpperCase();
 		//return default if no system property set		
 		return ConfigurationFactory.localEnvironment;
 	}
