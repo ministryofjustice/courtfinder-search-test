@@ -34,26 +34,21 @@ public class ConfigurationFactory {
 	}
 	
 	public static String getWebDriverName(){
-		if (!(System.getProperty("WEBDRIVER_NAME") == null) )
-		   return System.getProperty("WEBDRIVER_NAME").toUpperCase();
-		//return default if no system property set
-		//System.setProperty("NO_JAVASCRIPT", "1");
+		if (!(System.getProperty("Browser") == null) )
+		   return System.getProperty("Browser").toUpperCase();
+		System.out.println("Browser: " + ConfigurationFactory.firefoxBrowser );
 		return ConfigurationFactory.firefoxBrowser;
 	}
 	
 	
 	public static WebDriver getFireFoxWebDriver(){
 		FirefoxProfile profile = new ProfilesIni().getProfile("default");
-		
-		if (!(System.getProperty("NO_COOKIES") == null) ){
-			profile.setPreference("network.cookie.cookieBehavior", 2);
-		}else if (!(System.getProperty("NO_JAVASCRIPT") == null)) {
-			profile.setPreference("javascript.enabled", false);
-		}
-		
 		WebDriver driver = new FirefoxDriver(profile);
+		
 		driver.manage().deleteAllCookies();
-		driver.manage().window().maximize();		
+		driver.manage().window().maximize();
+		
+		System.out.println("Firefox driver initiated.");
 		return driver;
 		
 	}
