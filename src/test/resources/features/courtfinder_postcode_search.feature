@@ -1,7 +1,7 @@
-@todo
+
 Feature: As a user I need to be able to make a postcode and area of law search so that it will give a list of the closest court/tribunals 
 
-
+@todo  
 Scenario: No postcode entered and user requests search prompts error
 
 
@@ -24,12 +24,12 @@ Scenario Outline: Entering a valid postcode and area of law returns expected cou
 #          |CA488RT |Bankruptcy       |Aberystwyth Justice Centre                                 |
                    
 
-      
+    
 Scenario Outline: Entering an Northern Ireland postcode and area of law will return an error 
 
           Given I am on the courtfinder postcode search page
           When I enter a Northern Ireland postcode "<postcode>" and area of law "<law>" and select continue
-#          Then I am returned an error message that Northern Ireland is not supported except for immigration
+          Then I am returned an error message that Northern Ireland is not supported except for immigration
           
  #          "Aside from immigration tribunals, 
  #           this tool does not return results for Northern Ireland. 
@@ -52,7 +52,7 @@ Scenario Outline: Entering an Northern Ireland postcode and area of law will ret
          |BT56    |Forced marriage         |
          |BT6     |Employment              |
          |BT33    |Social security         |
- #        |BT44    |High court              |
+ #       |BT44    |High court              |
          |BT      |All courts and tribunals|
 
 

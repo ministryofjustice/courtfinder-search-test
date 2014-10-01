@@ -63,8 +63,7 @@ public class CourtFinderPostcodeSearchSteps {
 	@Then("^I am returned an error message that Northern Ireland is not supported except for immigration$")
 	public void i_am_returned_an_error_message_that_Northern_Ireland_is_not_supported_except_for_immigration()
 			throws Throwable {
-		assertTrue("Unable to reach the search error page", PageFactory
-				.getCourtFinderSearchErrorPage(driver).verifyOnPage());
+		assertTrue("NI Error not found", PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptNorthernIreland());
 	}
 
 	@When("^select the \"(.*?)\" link in the postcode search results$")

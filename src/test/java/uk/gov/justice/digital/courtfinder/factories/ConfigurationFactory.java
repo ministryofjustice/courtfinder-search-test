@@ -36,7 +36,6 @@ public class ConfigurationFactory {
 	public static String getWebDriverName(){
 		if (!(System.getProperty("Browser") == null) )
 		   return System.getProperty("Browser").toUpperCase();
-		System.out.println("Browser: " + ConfigurationFactory.firefoxBrowser );
 		return ConfigurationFactory.firefoxBrowser;
 	}
 	
@@ -48,7 +47,6 @@ public class ConfigurationFactory {
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		
-		System.out.println("Firefox driver initiated.");
 		return driver;
 		
 	}

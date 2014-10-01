@@ -7,7 +7,6 @@ import uk.gov.justice.digital.courtfinder.pages.CourtFinderCourtDetailsPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderListViewPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderPostcodeSearchResultPage;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchErrorPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderStartPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtfinderPostcodSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtfinderSearchSelectionPage;
@@ -40,9 +39,6 @@ public class PageFactory {
 		return new CourtFinderPostcodeSearchResultPage(driver);
 	}	
 	
-	public static CourtFinderSearchErrorPage getCourtFinderSearchErrorPage(WebDriver driver){
-		return new CourtFinderSearchErrorPage(driver);
-	}
 	
 	public static CourtFinderCourtDetailsPage getCourtFinderCourtDetailsPage(WebDriver driver){
 		return new CourtFinderCourtDetailsPage(driver);

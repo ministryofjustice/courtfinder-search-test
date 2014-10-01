@@ -2,6 +2,7 @@ package uk.gov.justice.digital.courtfinder.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By.ByXPath;
 
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
@@ -31,8 +32,10 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/form/div[1]/label/div[1]");
 	private String expectedPageTitle = "Search by postcode";
 	
-	private By errorNoPostcodeEntered = new By.ByXPath(".//*[@class='validation-error']");
+	private By errorNoPostcodeEntered = new By.ByXPath(".//*[@class='validation-error']/span");
+	private By errorNorthernIrelandPostcode = new By.ByXPath(".//*[@class='postcode-error validation-error']/span");
 	private String expectedErrorTextNoPostcodeEntered = "You did not enter a postcode. Please try again.";
+	private String expectedErrorTextNorthernIrelandPostcode = "Aside from immigration tribunals";
 	private By legalProblems = new By.ByXPath(".//*[@id='aol-one']");
 	
 	public void clickLegalProblems() throws Exception{
@@ -168,6 +171,11 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	public boolean verifyErrorPromptEnterPostcode() throws Exception {
 		waitToGetElement(errorNoPostcodeEntered, HTTP_TIMEOUT);
 		return isTextContainedInInnerText(errorNoPostcodeEntered, expectedErrorTextNoPostcodeEntered);
+	}
+	
+	public boolean verifyErrorPromptNorthernIreland() throws Exception {
+		waitToGetElement(errorNorthernIrelandPostcode, HTTP_TIMEOUT);
+		return isTextContainedInInnerText(errorNorthernIrelandPostcode, expectedErrorTextNorthernIrelandPostcode);
 	}
 
 }
