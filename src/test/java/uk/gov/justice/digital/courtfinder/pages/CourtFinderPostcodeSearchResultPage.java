@@ -9,7 +9,7 @@ public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 
 	
 	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/header/h1");
-	private String expectedPageTitle = "Find a court or tribunal";
+	private String expectedPageTitle = "Search results";
 	
 	private By errorInvalidPostcode = new By.ByXPath(".//*[@id='content']/div/section");
 	private String expectedErrorTextInvalidPostcode = "Sorry, your postcode";

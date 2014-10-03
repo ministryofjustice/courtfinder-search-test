@@ -1,6 +1,19 @@
-@todo 
+@todo
 Feature:  As a user that has started the court finder journey I need to select what type of search So that I can find my court using the criterion I know
  
+ 
+Scenario: Return to the courtfinder home (start) page
+           
+           Given I am on the court finder search selection page
+           When I select the home breadcrumb
+           Then I am redirected to the courtfinder start page
+
+            
+Scenario: The default settings for the search selection page is name/address is selected
+ 
+           Given I am on the court finder search selection page
+           Then the name and address search is selected by default
+   
          
 Scenario: Select a postcode search
 

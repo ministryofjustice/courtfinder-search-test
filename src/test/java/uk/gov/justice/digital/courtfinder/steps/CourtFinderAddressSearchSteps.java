@@ -11,6 +11,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import uk.gov.justice.digital.courtfinder.factories.JourneyFactory;
 import uk.gov.justice.digital.courtfinder.factories.PageFactory;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
 import uk.gov.justice.digital.courtfinder.webdriver.SharedDriver;
 
 public class CourtFinderAddressSearchSteps {
@@ -29,7 +31,7 @@ public class CourtFinderAddressSearchSteps {
 	    assertTrue("Unable to reach the address search page",PageFactory.getCourtFinderAddressSearchPage(driver).verifyOnPage());
 	}
 
-	@When("^I enter a (?:partial court name|court name|building name|street name|town, city or county|invalid address) \"(.*?)\" and search$")
+	@When("^I enter a (?:partial court name|court name|building name|street name|town, city or county|invalid address|inactive court) \"(.*?)\" and search$")
 	public void i_enter_a_court_name_and_search(String courtName) throws Throwable {
 	    PageFactory.getCourtFinderAddressSearchPage(driver).setAddress(courtName);
 	    PageFactory.getCourtFinderAddressSearchPage(driver).clickContinueButton();
@@ -71,5 +73,35 @@ public class CourtFinderAddressSearchSteps {
 	public void the_results_should_be_listed_in_the_following_order(List<String> courtResults) throws Throwable {
 		assertTrue(PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyCourtResultsSortOrder(courtResults));
 	}
+	
+	@When("^I click on the \"(.*?)\" breadcrumb$")
+	public void i_click_on_the_breadcrumb(String breadcrumb) throws Throwable {
+		CourtFinderSearchPage page = PageFactory.getCourtFinderSearchPage(driver);
+	    if (breadcrumb.trim().equalsIgnoreCase("home")){
+	    	page.clickHomeBreadcrumb();
+	    } else if (breadcrumb.trim().equalsIgnoreCase("Find a court or tribunal")){
+	    	page.clickFindACourtBreadcrumb();
+	     } else if (breadcrumb.trim().equalsIgnoreCase("Search by postcode")){
+	    	page.clickSearchByPostcodeBreadcrumb();
+	     } else{
+		    page.clickSearchByAddressCourtBreadcrumb();
+		 }
+	}
+
+	@Then("^I am redirected to the \"(.*?)\" page$")
+	public void i_am_redirected_to_the_page(String page) throws Throwable {
+	    if (page.trim().equalsIgnoreCase("courtfinder start"))
+	       PageFactory.getCourtFinderStartPage(driver).verifyOnPage();
+	    else if (page.trim().equalsIgnoreCase("Find a court or tribunal")){
+	    	PageFactory.getCourtfinderSearchSelectionPage(driver).verifyOnPage();
+	    	PageFactory.getCourtfinderSearchSelectionPage(driver).verifySearchByNameIsSelected();
+	    } else if (page.trim().equalsIgnoreCase("Search by postcode")){
+	    	PageFactory.getCourtfinderPostcodSearchPage(driver).verifyOnPage();
+	    } else
+	    	PageFactory.getCourtFinderAddressSearchPage(driver).verifyOnPage();
+	    	
+	    
+	}
+
 
 }

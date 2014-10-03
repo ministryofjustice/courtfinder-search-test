@@ -67,5 +67,24 @@ public class CourtFinderSearchSelectionSteps {
 	    assertTrue("Unable to reach the list view page", 
 	    		   PageFactory.getCourtFinderListViewPage(driver).verifyOnPage());
 	}	
+	
+	@When("^I select the home breadcrumb$")
+	public void i_select_the_home_breadcrumb() throws Throwable {
+	    PageFactory.getCourtfinderSearchSelectionPage(driver).clickHomeBreadcrumb();
+	}
+
+	@Then("^I am redirected to the courtfinder start page$")
+	public void i_am_redirected_to_the_courtfinder_start_page() throws Throwable {
+	    assertTrue("Unable to reach the courtfinder start page",
+	    		  PageFactory.getCourtFinderStartPage(driver).verifyOnPage());
+	}
+	
+	@Then("^the name and address search is selected by default$")
+	public void the_name_and_address_search_is_selected_by_default() throws Throwable {
+	    assertTrue("The Name and Address is not selected as default",
+	    		  PageFactory.getCourtfinderSearchSelectionPage(driver).verifyDefaultPageSettings() 
+	    		  );
+	}
+
 
 }

@@ -1,6 +1,33 @@
-@todo
+
 Feature: As a citizen I need to find a court by name, address, county so I can find useful information to help me
-         
+
+
+      
+Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
+
+             Given I am on the courtfinder address search page
+             When I click on the "<breadcrumb>" breadcrumb
+             Then I am redirected to the "<page>" page
+             
+             Examples:
+             |breadcrumb              |page                    |
+             |home                    |courtfinder start       |
+             |Find a court or tribunal|Find a court or tribunal|
+            
+
+@todo       
+Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
+
+             Given I am on the courtfinder address search page
+             When I enter a court name "Old Bailey" and search
+             And I click on the "<breadcrumb>" breadcrumb
+             Then I am redirected to the "<page>" page
+             
+             Examples:
+             |breadcrumb              |page                     |
+             |home                    |courtfinder start        |
+             |Find a court or tribunal|Find a court or tribunal | 
+             |Search by postcode      |Search by name or address| 
 
 Scenario: No address entered and user requests search prompts error
 
@@ -110,8 +137,21 @@ Scenario Outline: address search that returns no results
               |invalidaddress|
               |zzzzzzzzzz    | 
               
+              
+              
 # error message :
 # Sorry, there are no results for xxxxx. Please check and try another name or addresss.                
+
+Scenario Outline: Inactive court should not be displayed
+
+               Given I am on the courtfinder address search page
+               When I enter a inactive court "<inactivecourt>" and search
+               Then I should be prompted that the address is invalid
+               
+              Examples:
+              
+              |inactivecourt               |
+              |Southport Magistrates' Court| 
 
              
 Scenario: Sort order will be venue,town,street,county - sub sort is on areas of law

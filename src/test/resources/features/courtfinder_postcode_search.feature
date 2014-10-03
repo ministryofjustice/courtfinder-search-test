@@ -1,6 +1,58 @@
-@todo 
+@todo
 Feature: As a user I need to be able to make a postcode and area of law search so that it will give a list of the closest court/tribunals 
 
+
+Scenario Outline: Entering a scottish postcode prompts error only courts in uk and wales.
+
+          Given I am on the courtfinder postcode search page
+          When I enter a Scottish postcode "<postcode>" and area of law "<law>" and select continue
+          Then I am returned an error message that courtfinder only supports courts in England and Wales
+          
+          
+         Examples:
+         |postcode|law                     |   
+         |DG1     |Adoption                |
+         |DD5    |Children                |
+         |FK21    |Civil partnership       |
+         |G12    |Divorce                 |
+         |KW2    |Bankruptcy              |
+         |PH38    |Housing possession      |
+         |PA10    |Money claims            |
+         |ML10    |Probate                 |
+         |AB37     |Crime                   |
+         |DD2    |Domestic violence       |
+         |G46    |Forced marriage         |
+         |ZE1     |Employment              |
+         |EH27    |Social security         |
+         |HS1      |All courts and tribunals|
+      
+
+
+         
+Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
+
+             Given I am on the courtfinder postcode search page
+             When I click on the "<breadcrumb>" breadcrumb
+             Then I am redirected to the "<page>" page
+             
+             Examples:
+             |breadcrumb              |page                    |
+             |home                    |courtfinder start       |
+             |Find a court or tribunal|Find a court or tribunal|
+             
+         
+Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
+
+             Given I am on the courtfinder postcode search page
+             When I enter a postcode "SG80LT" and area of law "Crime" and select continue
+             When I click on the "<breadcrumb>" breadcrumb
+             Then I am redirected to the "<page>" page
+             
+             Examples:
+             |breadcrumb              |page                    |
+             |home                    |courtfinder start       |
+             |Find a court or tribunal|Find a court or tribunal| 
+             |Search by postcode      |Search by postcode      |            
  
 Scenario: No postcode entered and user requests search prompts error
 

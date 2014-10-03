@@ -50,7 +50,7 @@ public class CourtFinderPostcodeSearchSteps {
 						.verifyCourtResults(courts));
 	}
 
-	@When("^I enter a Northern Ireland postcode \"(.*?)\" and area of law \"(.*?)\" and select continue$")
+	@When("^I enter a (?:Scottish|Northern Ireland) postcode \"(.*?)\" and area of law \"(.*?)\" and select continue$")
 	public void i_enter_a_Northern_Ireland_postcode_and_area_of_law_and_select_continue(
 			String postcode, String areaOfLaw) throws Throwable {
 		CourtfinderPostcodSearchPage page = PageFactory
@@ -64,6 +64,11 @@ public class CourtFinderPostcodeSearchSteps {
 	public void i_am_returned_an_error_message_that_Northern_Ireland_is_not_supported_except_for_immigration()
 			throws Throwable {
 		assertTrue("NI Error not found", PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptNorthernIreland());
+	}
+	
+	@Then("^I am returned an error message that courtfinder only supports courts in England and Wales$")
+	public void i_am_returned_an_error_message_that_courtfinder_only_supports_courts_in_England_and_Wales() throws Throwable {
+		assertTrue("Scottish Error not found", PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptScotland());
 	}
 
 	@When("^select the \"(.*?)\" link in the postcode search results$")

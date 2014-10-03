@@ -2,6 +2,9 @@ package uk.gov.justice.digital.courtfinder.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By.ByXPath;
+
+import com.thoughtworks.selenium.webdriven.commands.IsChecked;
 
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
@@ -13,6 +16,8 @@ public class CourtfinderSearchSelectionPage extends SeleniumPage {
 	private By postcodeSearch = new By.ById("postcode-search");
 	private By addressSearch  = new By.ById("name-address-search");
 	private By listView       = new By.ById("list-view");
+	
+	private By breadcrumbHome = new By.ByXPath(".//*[@id='global-breadcrumb']/ol/li/a");
 	
 	
 	private By continueButton  = new By.ById("continue");
@@ -41,6 +46,19 @@ public class CourtfinderSearchSelectionPage extends SeleniumPage {
 	public boolean verifyOnPage() throws Exception{
 		waitForPageLoaded();
 	  	return isTextContainedInInnerText(pageTitle, expectedPageTitle);
+	}
+
+	public void clickHomeBreadcrumb() throws Exception {
+		click(breadcrumbHome);		
+	}
+
+	public boolean verifyDefaultPageSettings() throws Exception {
+		return isSelected(addressSearch);
+	}
+
+	public boolean verifySearchByNameIsSelected() throws Exception {
+		return isSelected(addressSearch);
+		
 	}
 
 }

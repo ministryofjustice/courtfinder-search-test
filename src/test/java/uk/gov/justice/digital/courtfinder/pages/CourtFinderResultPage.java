@@ -16,6 +16,30 @@ public class CourtFinderResultPage extends SeleniumPage {
 	protected By numberOfResults = new By.ById("number-of-results");	
 	protected String courtAreaOfLaws = ".//*[@id='court-results']/li[%d]//*[@class='court-aol']/ul/li";
 	protected String courtAreaOfLaw = ".//*[@id='court-results']/li[%d]//*[@class='court-aol']/ul/li[%d]/span";
+	protected By homeBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[1]/a");
+	protected By findCourtBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[2]/a");
+    protected By searchByPostcodeBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[2]/a");
+    protected By searchByAddressBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[2]/a");
+	
+	public void clickHomeBreadcrumb() throws Exception {
+		click(homeBreadcrumb);
+		
+	}
+
+	public void clickFindACourtBreadcrumb() throws Exception {
+		click(findCourtBreadcrumb);
+		
+	}
+	
+	public void clickSearchByAddressBreadcrumb() throws Exception {
+		click(searchByAddressBreadcrumb);
+		
+	}
+
+	public void clickSearchByPostcodeBreadcrumb() throws Exception {
+		click(searchByPostcodeBreadcrumb);
+		
+	}
 
 	public CourtFinderResultPage(WebDriver driver) {
 		super(driver);

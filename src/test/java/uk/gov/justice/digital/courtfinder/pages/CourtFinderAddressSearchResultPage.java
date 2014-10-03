@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 public class CourtFinderAddressSearchResultPage extends CourtFinderResultPage{
 	
 	private By pageTitle = new By.ByXPath(".//*[@id='content']/div[2]/header/h1");
-	private String expectedPageTitle = "Find a court or tribunal";
+	private String expectedPageTitle = "Search results";
 
 	
 	
