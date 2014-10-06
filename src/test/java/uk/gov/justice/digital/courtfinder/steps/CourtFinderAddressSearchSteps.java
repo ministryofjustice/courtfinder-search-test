@@ -115,6 +115,14 @@ public class CourtFinderAddressSearchSteps {
 	    assertTrue("address search box is not the focus",
 	    		   PageFactory.getCourtFinderAddressSearchPage(driver).verifySearchInputHasFocus());
 	}
+	
+
+	@When("^select the \"(.*?)\" link in the address search results$")
+	public void select_the_link_in_the_address_search_results(String court) throws Throwable {
+	    assertTrue("Unable to to reach address search details page",
+	    		   PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyOnPage());
+	    PageFactory.getCourtFinderAddressSearchResultPage(driver).clickCourtTitle(court);
+	}
 
 
 }

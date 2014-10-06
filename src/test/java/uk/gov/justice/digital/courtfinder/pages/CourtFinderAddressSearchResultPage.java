@@ -32,4 +32,16 @@ public class CourtFinderAddressSearchResultPage extends CourtFinderResultPage{
 		return true;
 	}	
 	
+	public void clickCourtTitle(String court) throws Exception {
+		String courtName = "";
+        //loop results
+		for (int resultIndex = 1; resultIndex <= getNumberOfResults(); resultIndex++ ){
+		   courtName = (getCourtNameAtIndex(resultIndex));
+		   if (courtName.equalsIgnoreCase(court)){
+				click(new By.ByXPath(String.format(courtTitleLink, resultIndex))); 
+				break;
+		   }
+		}		
+	}
+	
 }

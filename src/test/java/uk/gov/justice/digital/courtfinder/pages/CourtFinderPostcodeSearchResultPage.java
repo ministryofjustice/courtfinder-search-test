@@ -14,8 +14,9 @@ public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 	private By errorInvalidPostcode = new By.ByXPath(".//*[@id='content']/div/section");
 	private String expectedErrorTextInvalidPostcode = "Sorry, your postcode";
 
-	private String courtDX = ".//*[@id='content']/div/div/ul/li[%d]/div[2]/p[2]/span[2]";
-	private String courtNumber = ".//*[@id='content']/div/div/ul/li[%d]/div[2]/p[2]/span[4]";
+	private String courtDX = ".//*[@id='court-results']/li[%d]/div[1]/p[2]/span[2]";
+	private String courtNumber = ".//*[@id='court-results']/li[%d]/div[1]/p[2]/span[4]";
+
 	
 
 	
@@ -48,7 +49,7 @@ public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 		for (int resultIndex = 1; resultIndex <= getNumberOfResults(); resultIndex++ ){
 		   courtName = (getCourtNameAtIndex(resultIndex));
 		   if (courtName.equalsIgnoreCase(court)){
-				click(new By.ByXPath(String.format(courtTitle, resultIndex))); 
+				click(new By.ByXPath(String.format(courtTitleLink, resultIndex))); 
 				break;
 		   }
 		}		

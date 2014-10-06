@@ -66,12 +66,13 @@ Scenario Outline: Complete court name returns individual court entry in the resu
                |accrington county court|
                |Bath county Court and Family court|
                |Bournemouth Crown court|
-               
+ 
+             
  Scenario Outline: Complete court name returns court details including dx and court number
 
                Given I am on the courtfinder address search page
                When I enter a court name "<court>" and search
-               Then for the "<court>" the "<dx>" and "<courtnumber>" are displayed
+               Then for the "<court>" the dx "<dx>" and courtnumber "<courtnumber>" are displayed
               
               Examples:
               
@@ -195,6 +196,17 @@ Scenario: Sort order will be venue,town,street,county - sub sort is on areas of 
                |Consett Magistrates' Court                      |
 
 
+Scenario Outline: Each court name should be a link to the respective court detail page  
+
+          Given I am on the courtfinder address search page
+          When I enter "<address>" and search 
+          And select the "<court>" link in the address search results
+          Then I am redirected to the selected "<court>" details page
+          
+          Examples:
+          |address            |court                                            |
+          |Old Bailey         |Central Criminal Court                           |
+          |Immigration        |North Shields Immigration and Asylum Tribunal    |
 
 Scenario Outline: Each court result should show the postal address 
 

@@ -70,7 +70,7 @@ Scenario: No postcode entered and user requests search prompts error
           When I select continue
           Then I am prompted to enter a postcode
           
-        
+      
 Scenario Outline: Entering a valid postcode and area of law returns expected courts
 
           Given I am on the courtfinder postcode search page
@@ -78,10 +78,10 @@ Scenario Outline: Entering a valid postcode and area of law returns expected cou
           Then I am redirected to the postcode results displaying the closest "<courts>"
           
           Examples:
-          |postcode|law              |courts                                                     |
-          |SW1H9AJ |Adoption         |Inner London Family Proceedings Court,Central Family Court |
-          |SW1H9AJ |Children         |Central Family Court                                       |
-          |SW1H9AJ |Civil partnership|Central Family Court,Brighton Family Court                 |
+          |postcode|law              |courts                                                      |
+          |SW1H9AJ |Adoption         |Inner London Family Proceedings Court,Central Family Court  |
+          |SW1H9AJ |Children         |Central Family Court                                        |
+          |SW1H9AJ |Civil partnership|Central Family Court,Sussex Family Centre at Brighton       |
 #          |CA488RT |Bankruptcy       |Aberystwyth Justice Centre                                 |
                    
 
@@ -161,7 +161,7 @@ Scenario Outline: Each court result should show the dx and court number
 
           Given I am on the courtfinder postcode search page
           When I enter a postcode "<postcode>" and area of law "<law>" and select continue
-          Then for the "<court>" the "<dx>" and "<courtnumber>" are displayed
+          Then for the "<court>" the dx "<dx>" and courtnumber "<courtnumber>" are displayed
           
           Examples:
           |postcode|law                              |court                                            |dx|courtnumber|
@@ -206,7 +206,7 @@ Scenario Outline: Error for postcode returning no results
           |CX3                 |All courts and tribunals          |
           
 
-           
+          
 Scenario Outline: postcode search that returns invalid postcode error
 
                Given I am on the courtfinder postcode search page

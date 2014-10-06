@@ -9,7 +9,7 @@ import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 public class CourtFinderResultPage extends SeleniumPage {
 	
 	protected By courts = new By.ByXPath(".//*[@id='court-results']/li");
-	protected String courtTitle = ".//*[@id='court-results']/li[%d]//*[@class='court-link']/a";
+	protected String courtTitle = ".//*[@id='court-results']/li[%d]/h2";
 	protected String courtAddress = ".//*[@id='court-results']/li[%d]//*[@class='court-address']";
 	protected String courtTown   = ".//*[@id='court-results']/li[1]//*[@class='court-town']";
 	protected String courtPostcode   = ".//*[@id='court-results']/li[1]//*[@class='court-postcode']";
@@ -20,6 +20,8 @@ public class CourtFinderResultPage extends SeleniumPage {
 	protected By findCourtBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[2]/a");
     protected By searchByPostcodeBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[2]/a");
     protected By searchByAddressBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[2]/a");
+    
+    protected String courtTitleLink = ".//*[@id='court-results']/li[%d]/p[1]/a";
     
 	
 	public void clickHomeBreadcrumb() throws Exception {

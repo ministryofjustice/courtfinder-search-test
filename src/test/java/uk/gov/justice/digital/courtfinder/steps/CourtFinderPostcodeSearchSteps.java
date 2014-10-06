@@ -38,17 +38,7 @@ public class CourtFinderPostcodeSearchSteps {
 		page.setAreaOfLaw(areaOfLaw);
 		page.clickContinue();
 	}
-
-	@Then("^I am redirected to the postcode results displaying the closest \"(.*?)\"$")
-	public void i_am_redirected_to_the_postcode_results_displaying_the_closest(
-			String courts) throws Throwable {
-		assertTrue("could not reach the postcode search result page",
-				PageFactory.getCourtFinderPostcodeSearchResultPage(driver)
-						.verifyOnPage());
-		assertTrue("Unable to find a court",
-				PageFactory.getCourtFinderPostcodeSearchResultPage(driver)
-						.verifyCourtResults(courts));
-	}
+	
 
 	@When("^I enter a (?:Scottish|Northern Ireland) postcode \"(.*?)\" and area of law \"(.*?)\" and select continue$")
 	public void i_enter_a_Northern_Ireland_postcode_and_area_of_law_and_select_continue(
@@ -104,12 +94,14 @@ public class CourtFinderPostcodeSearchSteps {
 	    		   ,PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptEnterPostcode());
 	}
 	
-	@Then("^for the \"(.*?)\" the \"(.*?)\" and \"(.*?)\" are displayed$")
-	public void for_the_the_and_are_displayed(String court, String dx, String courtnumber) throws Throwable {
+	
+	@Then("^for the \"(.*?)\" the dx \"(.*?)\" and courtnumber \"(.*?)\" are displayed$")
+	public void for_the_the_dx_and_courtnumber_are_displayed(String court, String dx, String courtnumber) throws Throwable {
 	    assertTrue("Invalid dx number",PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyCourtDX(court,dx));
 	    assertTrue("Invalid court number",PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyCourtNumber(court,courtnumber));
 
 	}
+
 
 	@Then("^for the \"(.*?)\" the \"(.*?)\" is displayed$")
 	public void for_the_the_is_displayed(String court, String courtaddress) throws Throwable {
@@ -130,11 +122,22 @@ public class CourtFinderPostcodeSearchSteps {
 	@When("^I enter a invalid postcode \"(.*?)\" and search$")
 	public void i_enter_a_invalid_postcode_and_search(String postcode) throws Throwable {
 	    PageFactory.getCourtfinderPostcodSearchPage(driver).setSearchPostcode(postcode);
+	    PageFactory.getCourtfinderPostcodSearchPage(driver).clickContinue();
 	}
 
 	@Then("^I should be prompted that the postcode is invalid$")
 	public void i_should_be_prompted_that_the_postcode_is_invalid() throws Throwable {
 	    assertTrue("Error prompt for invalid postcode not found"
 	    		   ,PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptInvalidPostcode());
-	}	
+	}
+	
+	@Then("^I am redirected to the postcode results displaying the closest \"(.*?)\"$")
+	public void i_am_redirected_to_the_postcode_results_displaying_the_closest(String courtNames) throws Throwable {
+		assertTrue("Unable to reach the postcode results page", PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyOnPage());
+		String[] courts = courtNames.split(",");
+		for (int index = 0; index < courts.length; index++){
+			String court = courts[index];
+	         assertTrue("court not found: " + court,(PageFactory.getCourtFinderAddressSearchResultPage(driver).getCourtNameAtIndex(index+1)).equalsIgnoreCase(court));
+		}
+	}
 }
