@@ -48,6 +48,11 @@ public class CourtFinderAddressSearchPage extends CourtFinderSearchPage{
 		setText(addressInput,address);
 	}
 
+	public boolean verifySearchInputHasFocus() throws Exception {
+		
+		return driver.switchTo().activeElement().equals(getElement(addressInput));
+	}
+
 
 	
 	

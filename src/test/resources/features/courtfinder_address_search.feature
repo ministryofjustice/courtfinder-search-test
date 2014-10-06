@@ -1,4 +1,4 @@
-
+@todo
 Feature: As a citizen I need to find a court by name, address, county so I can find useful information to help me
 
 
@@ -13,9 +13,24 @@ Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
              |breadcrumb              |page                    |
              |home                    |courtfinder start       |
              |Find a court or tribunal|Find a court or tribunal|
-            
 
-@todo       
+            
+Scenario: when redirected to the address search page the input searchbox is focused
+
+             Given I am on the courtfinder address search page
+             Then the address search input box is in focus                 
+
+
+Scenario: Go back to the address search page from the results the address inputbox should be focused
+
+             Given I am on the courtfinder address search page
+             When I enter a court name "Old Bailey" and search
+             And I click on the "Search by name or address" breadcrumb
+             Then I am redirected to the "Search by name or address" page
+             And the address search input box is in focus 
+
+
+      
 Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
 
              Given I am on the courtfinder address search page
@@ -28,6 +43,8 @@ Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
              |home                    |courtfinder start        |
              |Find a court or tribunal|Find a court or tribunal | 
              |Search by postcode      |Search by name or address| 
+             
+    
 
 Scenario: No address entered and user requests search prompts error
 
@@ -141,6 +158,7 @@ Scenario Outline: address search that returns no results
               
 # error message :
 # Sorry, there are no results for xxxxx. Please check and try another name or addresss.                
+
 
 Scenario Outline: Inactive court should not be displayed
 

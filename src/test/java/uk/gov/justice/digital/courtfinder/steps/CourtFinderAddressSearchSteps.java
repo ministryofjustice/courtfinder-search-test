@@ -31,12 +31,19 @@ public class CourtFinderAddressSearchSteps {
 	    assertTrue("Unable to reach the address search page",PageFactory.getCourtFinderAddressSearchPage(driver).verifyOnPage());
 	}
 
-	@When("^I enter a (?:partial court name|court name|building name|street name|town, city or county|invalid address|inactive court) \"(.*?)\" and search$")
+	@When("^I enter a (?:partial court name|court name|building name|street name|town, city or county) \"(.*?)\" and search$")
 	public void i_enter_a_court_name_and_search(String courtName) throws Throwable {
 	    PageFactory.getCourtFinderAddressSearchPage(driver).setAddress(courtName);
 	    PageFactory.getCourtFinderAddressSearchPage(driver).clickContinueButton();
 	    PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyOnPage();
 	}
+	
+	@When("^I enter a (?:invalid address|inactive court) \"(.*?)\" and search$")
+	public void i_enter_a_court_name_and_search_(String courtName) throws Throwable {
+	    PageFactory.getCourtFinderAddressSearchPage(driver).setAddress(courtName);
+	    PageFactory.getCourtFinderAddressSearchPage(driver).clickContinueButton();
+	}
+
 	
 	@When("^I enter \"(.*?)\" and search$")
 	public void i_enter_and_search(String searchText) throws Throwable {
@@ -101,6 +108,12 @@ public class CourtFinderAddressSearchSteps {
 	    	PageFactory.getCourtFinderAddressSearchPage(driver).verifyOnPage();
 	    	
 	    
+	}
+
+	@Then("^the address search input box is in focus$")
+	public void the_address_search_input_box_is_in_focus() throws Throwable {
+	    assertTrue("address search box is not the focus",
+	    		   PageFactory.getCourtFinderAddressSearchPage(driver).verifySearchInputHasFocus());
 	}
 
 

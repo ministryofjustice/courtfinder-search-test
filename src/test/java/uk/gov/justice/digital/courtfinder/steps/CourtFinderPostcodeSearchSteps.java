@@ -121,4 +121,20 @@ public class CourtFinderPostcodeSearchSteps {
 	    assertTrue("court not found",(PageFactory.getCourtFinderAddressSearchResultPage(driver).getCourtNameAtIndex(1).equalsIgnoreCase(courtName)));
 	}
 
+	@Then("^the postcode search input box is in focus$")
+	public void the_postcode_search_input_box_is_in_focus() throws Throwable {
+	    assertTrue("postcode search box is not the focus",
+	    		   PageFactory.getCourtfinderPostcodSearchPage(driver).verifySearchInputHasFocus());
+	}
+
+	@When("^I enter a invalid postcode \"(.*?)\" and search$")
+	public void i_enter_a_invalid_postcode_and_search(String postcode) throws Throwable {
+	    PageFactory.getCourtfinderPostcodSearchPage(driver).setSearchPostcode(postcode);
+	}
+
+	@Then("^I should be prompted that the postcode is invalid$")
+	public void i_should_be_prompted_that_the_postcode_is_invalid() throws Throwable {
+	    assertTrue("Error prompt for invalid postcode not found"
+	    		   ,PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptInvalidPostcode());
+	}	
 }

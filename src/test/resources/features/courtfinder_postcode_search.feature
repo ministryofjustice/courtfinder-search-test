@@ -40,6 +40,15 @@ Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
              |home                    |courtfinder start       |
              |Find a court or tribunal|Find a court or tribunal|
              
+
+Scenario: Clicking on the page breadcrumbs returns user to relevant page
+
+             Given I am on the courtfinder postcode search page
+             When I enter a postcode "SG80LT" and area of law "Crime" and select continue
+             When I click on the "Search by postcode " breadcrumb
+             Then I am redirected to the "Search by postcode " page
+             And the postcode search input box is in focus 
+
          
 Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
 
@@ -195,6 +204,25 @@ Scenario Outline: Error for postcode returning no results
           |postcode            |law                               |
           |CD2                 |Crime                             |
           |CX3                 |All courts and tribunals          |
+          
+
+           
+Scenario Outline: postcode search that returns invalid postcode error
+
+               Given I am on the courtfinder postcode search page
+               When I enter a invalid postcode "<invalidpostcode>" and search
+               Then I should be prompted that the postcode is invalid
+               
+              Examples:
+              
+              |invalidpostcode|
+              |zzzzzzzzzz     | 
+             
+Scenario: when redirected to the postcode search page the input searchbox is focused
+
+             Given I am on the courtfinder postcode search page
+             Then the postcode search input box is in focus          
+          
           
 @development              
  Scenario Outline: postcode search returns first court name

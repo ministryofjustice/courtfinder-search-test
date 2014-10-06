@@ -35,10 +35,12 @@ public class CourtfinderPostcodSearchPage extends CourtFinderSearchPage {
 	private By errorNoPostcodeEntered = new By.ByXPath(".//*[@class='validation-error']/span");
 	private By errorNorthernIrelandPostcode = new By.ByXPath(".//*[@class='postcode-error validation-error']/span");
 	private By errorScotlandPostcode = new By.ByXPath(".//*[@id='scotland']/em");
+	private By errorInvalidPostcode = new By.ByXPath("");
 
 	private String expectedErrorTextNoPostcodeEntered = "You did not enter a postcode. Please try again.";
 	private String expectedErrorTextNorthernIrelandPostcode = "Aside from immigration tribunals";
 	private String expectedErrorTextScotlandPostcode = "This tool shows courts and tribunals in England and Wales";
+	private String expectedErrorTextInvalidPostcode = "";
 
 	
 	private By legalProblems = new By.ByXPath(".//*[@id='aol-one']");
@@ -186,6 +188,16 @@ public class CourtfinderPostcodSearchPage extends CourtFinderSearchPage {
 	public boolean verifyErrorPromptScotland() throws Exception {
 		waitToGetElement(errorScotlandPostcode, HTTP_TIMEOUT);
 		return isTextContainedInInnerText(errorScotlandPostcode, expectedErrorTextScotlandPostcode);
+	}
+
+
+	public boolean verifySearchInputHasFocus() throws Exception {
+		
+		return driver.switchTo().activeElement().equals(getElement(searchPostcode));
+	}
+
+	public boolean verifyErrorPromptInvalidPostcode() throws Exception {
+		return isTextContainedInInnerText(errorInvalidPostcode, expectedErrorTextInvalidPostcode);
 	}
 
 }
