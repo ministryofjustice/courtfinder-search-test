@@ -3,6 +3,10 @@ package uk.gov.justice.digital.courtfinder.factories;
 
 
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,7 +15,9 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
 
 import com.opera.core.systems.OperaDriver;
 
@@ -47,8 +53,7 @@ public class ConfigurationFactory {
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		
-		return driver;
-		
+		return driver;	
 	}
 	
 	public static WebDriver getChromeWebDriver(){
@@ -75,8 +80,16 @@ public class ConfigurationFactory {
 	
 	
 	
-	public static WebDriver getInternetExplorerWebDriver(){
-		return new InternetExplorerDriver();
+	public static WebDriver getInternetExplorerWebDriver() throws MalformedURLException{
+        // Choose the browser, version, and platform to test
+        DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+        capabilities.setCapability("version", "7");
+        capabilities.setCapability("platform", Platform.XP);
+        // Create the connection to Sauce Labs to run the tests
+        WebDriver driver = new RemoteWebDriver(
+                new URL("http://milror00:f1cbda7f-ca41-4601-b6f0-6995baa93b77@ondemand.saucelabs.com:80/wd/hub"),
+                capabilities);
+        return driver;
 	}
 	
 	public static WebDriver getWebDriver(){
@@ -88,8 +101,13 @@ public class ConfigurationFactory {
 			   return ConfigurationFactory.getSafariWebDriver();
 		else if (ConfigurationFactory.operaBrowser.equalsIgnoreCase(ConfigurationFactory.getWebDriverName()))
 			   return ConfigurationFactory.getOperaWebDriver();
-		else if (ConfigurationFactory.IEBrowser.equalsIgnoreCase(ConfigurationFactory.getWebDriverName()))
+		else if (ConfigurationFactory.IEBrowser.equalsIgnoreCase(ConfigurationFactory.getWebDriverName())){
+			try{
 			   return ConfigurationFactory.getInternetExplorerWebDriver();	
+			}catch (Exception e){
+				return null;
+			}
+		}
 		//return default if browser not recognised
 		return ConfigurationFactory.getFireFoxWebDriver();
 	}

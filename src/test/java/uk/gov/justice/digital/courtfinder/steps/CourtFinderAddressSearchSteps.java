@@ -15,6 +15,7 @@ import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
 import uk.gov.justice.digital.courtfinder.webdriver.SharedDriver;
 
+
 public class CourtFinderAddressSearchSteps {
 
 	private WebDriver driver;

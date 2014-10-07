@@ -43,11 +43,7 @@ public class CourtfinderPostcodSearchPage extends CourtFinderSearchPage {
 	private String expectedErrorTextInvalidPostcode = "Sorry, your postcode";
 
 	
-	private By legalProblems = new By.ByXPath(".//*[@id='aol-one']");
-	
-	public void clickLegalProblems() throws Exception{
-		click(legalProblems);
-	}
+	//private By legalProblems = new By.ByXPath(".//*[@id='aol-one']");
 	
 	public boolean verifyOnPage() throws Exception{
 		waitForPageLoaded();
@@ -130,7 +126,6 @@ public class CourtfinderPostcodSearchPage extends CourtFinderSearchPage {
 	}
 	
 	private void setSpecificAreaOfLaw(String areaOfLaw) throws Exception{
-		clickLegalProblems();
 		if (areaOfLaw.equalsIgnoreCase("adoption"))
 			selectAdoption();
 		else if (areaOfLaw.equalsIgnoreCase("bankruptcy"))

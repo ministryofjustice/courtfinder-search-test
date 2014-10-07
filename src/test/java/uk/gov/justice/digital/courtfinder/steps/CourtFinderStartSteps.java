@@ -3,12 +3,14 @@ package uk.gov.justice.digital.courtfinder.steps;
 import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.WebDriver;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import uk.gov.justice.digital.courtfinder.factories.JourneyFactory;
 import uk.gov.justice.digital.courtfinder.factories.PageFactory;
 import uk.gov.justice.digital.courtfinder.webdriver.SharedDriver;
+
 
 public class CourtFinderStartSteps {
 	
