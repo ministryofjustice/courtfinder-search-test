@@ -3,13 +3,14 @@ package uk.gov.justice.digital.courtfinder.factories;
 import org.openqa.selenium.WebDriver;
 
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchResultPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderAreaOfLawSelectionPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderCourtDetailsPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderListViewPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderPostcodeSearchResultPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderStartPage;
-import uk.gov.justice.digital.courtfinder.pages.CourtfinderPostcodSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtfinderPostcodeSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtfinderSearchSelectionPage;
 
 
@@ -24,8 +25,8 @@ public class PageFactory {
 		return new CourtfinderSearchSelectionPage(driver);
 	}	
 	
-	public static CourtfinderPostcodSearchPage getCourtfinderPostcodSearchPage(WebDriver driver){
-		return new CourtfinderPostcodSearchPage(driver);
+	public static CourtfinderPostcodeSearchPage getCourtfinderPostcodSearchPage(WebDriver driver){
+		return new CourtfinderPostcodeSearchPage(driver);
 	}	
 	
 	public static CourtFinderListViewPage getCourtFinderListViewPage(WebDriver driver){
@@ -53,6 +54,10 @@ public class PageFactory {
 	
 	public static CourtFinderSearchPage getCourtFinderSearchPage(WebDriver driver){
 		return new CourtFinderSearchPage(driver);
+	}
+	
+	public static CourtFinderAreaOfLawSelectionPage getCourtFinderAreaOfLawSelectionPage(WebDriver driver){
+		return new CourtFinderAreaOfLawSelectionPage(driver);
 	}
 	
 }

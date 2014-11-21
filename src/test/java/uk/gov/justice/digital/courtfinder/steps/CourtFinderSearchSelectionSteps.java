@@ -33,7 +33,6 @@ public class CourtFinderSearchSelectionSteps {
 	public void i_select_the_postcode_search_and_click_continue() throws Throwable {
 	    CourtfinderSearchSelectionPage page = PageFactory.getCourtfinderSearchSelectionPage(driver);
 	    page.clickPostcodeSearch();
-	    page.clickContinueButton();
 	}
 
 	@Then("^I am redirected to the postcode search page$")
@@ -47,7 +46,6 @@ public class CourtFinderSearchSelectionSteps {
 	public void i_select_the_name_and_address_search_and_click_continue() throws Throwable {
 	    CourtfinderSearchSelectionPage page = PageFactory.getCourtfinderSearchSelectionPage(driver);
 	    page.clickaddressSearch();
-	    page.clickContinueButton();
 	}
 
 	@Then("^I am redirected to the name and address search page$")
@@ -60,7 +58,6 @@ public class CourtFinderSearchSelectionSteps {
 	public void i_select_the_list_view_search_and_click_continue() throws Throwable {
 	    CourtfinderSearchSelectionPage page = PageFactory.getCourtfinderSearchSelectionPage(driver);
 	    page.clickListView();
-	    page.clickContinueButton();
 	}
 
 	@Then("^I am redirected to the list view page$")
@@ -85,6 +82,11 @@ public class CourtFinderSearchSelectionSteps {
 	    assertTrue("The Name and Address is not selected as default",
 	    		  PageFactory.getCourtfinderSearchSelectionPage(driver).verifyDefaultPageSettings() 
 	    		  );
+	}
+	
+	@Then("^I am redirected to the area of law selection page$")
+	public void i_am_redirected_to_the_area_of_law_selection_page() throws Throwable {
+	    assertTrue("Unable to reach the area of law selection page",PageFactory.getCourtFinderAreaOfLawSelectionPage(driver).verifyOnPage());
 	}
 
 

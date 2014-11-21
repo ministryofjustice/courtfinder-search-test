@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.WebDriver;
 
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderAreaOfLawSelectionPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderStartPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtfinderSearchSelectionPage;
 
@@ -30,23 +32,29 @@ public class JourneyFactory {
 				   page.verifyOnPage());
 		page.clickStartButton();
 	}
+	
+	public void getCourtFinderAreaOfLawSelectionPageJourney() throws Exception{
+		getCourtFinderStartPageJourney();
+		CourtFinderStartPage page = new CourtFinderStartPage(driver);
+		assertTrue("Unable to reach the start page",
+				  page.verifyOnPage());		
+		page.clickStartButton();
+	}
 
 	public void getCourtFinderPostcodeSearchPageJourney() throws Exception{
-		getCourtFinderSearchSelecionPageJourney();
-		CourtfinderSearchSelectionPage page = new CourtfinderSearchSelectionPage(driver);
-		assertTrue("Unable to reach the searchh selection page",
+		getCourtFinderStartPageJourney();
+		CourtFinderStartPage page = new CourtFinderStartPage(driver);
+		assertTrue("Unable to reach the start page",
 				  page.verifyOnPage());
-		page.clickPostcodeSearch();
-		page.clickContinueButton();
+		page.clickStartButton();
 	}
 	
 	public void getCourtFinderAddressSearchPageJourney() throws Exception{
-		getCourtFinderSearchSelecionPageJourney();
-		CourtfinderSearchSelectionPage page = new CourtfinderSearchSelectionPage(driver);
-		assertTrue("Unable to reach the search selection page",
+		getCourtFinderStartPageJourney();
+		CourtFinderStartPage page = new CourtFinderStartPage(driver);
+		assertTrue("Unable to reach the start page",
 				  page.verifyOnPage());
 		page.clickaddressSearch();
-		page.clickContinueButton();
 	}
 	
 

@@ -88,11 +88,11 @@ public class CourtFinderAddressSearchSteps {
 	    if (breadcrumb.trim().equalsIgnoreCase("home")){
 	    	page.clickHomeBreadcrumb();
 	    } else if (breadcrumb.trim().equalsIgnoreCase("Find a court or tribunal")){
-	    	page.clickFindACourtBreadcrumb();
+	    	page.clickFindACourtOrTribunalBreadcrumb();
 	     } else if (breadcrumb.trim().equalsIgnoreCase("Search by postcode")){
 	    	page.clickSearchByPostcodeBreadcrumb();
 	     } else{
-		    page.clickSearchByAddressCourtBreadcrumb();
+		    page.clickAboutYourIssueCourtBreadcrumb();
 		 }
 	}
 
@@ -101,8 +101,9 @@ public class CourtFinderAddressSearchSteps {
 	    if (page.trim().equalsIgnoreCase("courtfinder start"))
 	       PageFactory.getCourtFinderStartPage(driver).verifyOnPage();
 	    else if (page.trim().equalsIgnoreCase("Find a court or tribunal")){
-	    	PageFactory.getCourtfinderSearchSelectionPage(driver).verifyOnPage();
-	    	PageFactory.getCourtfinderSearchSelectionPage(driver).verifySearchByNameIsSelected();
+	    	//PageFactory.getCourtfinderSearchSelectionPage(driver).verifyOnPage();
+	    	//PageFactory.getCourtfinderSearchSelectionPage(driver).verifySearchByNameIsSelected();
+		    PageFactory.getCourtFinderStartPage(driver).verifyOnPage();
 	    } else if (page.trim().equalsIgnoreCase("Search by postcode")){
 	    	PageFactory.getCourtfinderPostcodSearchPage(driver).verifyOnPage();
 	    } else

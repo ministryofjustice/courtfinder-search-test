@@ -7,8 +7,8 @@ import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
 public class CourtFinderListViewPage extends SeleniumPage {
 	
-	private By pageTitle = new By.ByXPath("");
-	private String expectedPageTitle = "";
+	private By pageTitle = new By.ByXPath(".//*[@id='search-index-page']/header/h1");
+	private String expectedPageTitle = "Courts and Tribunals";
 
 	public CourtFinderListViewPage(WebDriver driver) {
 		super(driver);

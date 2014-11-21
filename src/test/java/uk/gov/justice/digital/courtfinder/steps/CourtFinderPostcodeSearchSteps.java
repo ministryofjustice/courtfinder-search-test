@@ -4,18 +4,23 @@ import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.WebDriver;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import uk.gov.justice.digital.courtfinder.factories.JourneyFactory;
 import uk.gov.justice.digital.courtfinder.factories.PageFactory;
-import uk.gov.justice.digital.courtfinder.pages.CourtfinderPostcodSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderAreaOfLawSelectionPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtfinderPostcodeSearchPage;
+import uk.gov.justice.digital.courtfinder.step.HtmlStepContext;
+import uk.gov.justice.digital.courtfinder.step.HtmlStepContextSingleton;
 import uk.gov.justice.digital.courtfinder.webdriver.SharedDriver;
 
 public class CourtFinderPostcodeSearchSteps {
 
 	private WebDriver driver;
 	private JourneyFactory journeyFactory;
+	private HtmlStepContext htmlStepContext = new HtmlStepContextSingleton().getInstance();
 
 	public CourtFinderPostcodeSearchSteps(SharedDriver driver) {
 		this.driver = driver;
@@ -24,31 +29,47 @@ public class CourtFinderPostcodeSearchSteps {
 
 	@Given("^I am on the courtfinder postcode search page$")
 	public void i_am_on_the_courtfinder_postcode_search_page() throws Throwable {
-		journeyFactory.getCourtFinderPostcodeSearchPageJourney();
-		assertTrue("Unable to reach the postcode search page", PageFactory
-				.getCourtfinderPostcodSearchPage(driver).verifyOnPage());
-	}
-
-	@When("^I enter a postcode \"(.*?)\" and area of law \"(.*?)\" and select continue$")
-	public void i_enter_a_postcode_and_area_of_law_and_select_continue(
-			String postcode, String areaOfLaw) throws Throwable {
-		CourtfinderPostcodSearchPage page = PageFactory
-				.getCourtfinderPostcodSearchPage(driver);
-		page.setSearchPostcode(postcode);
-		page.setAreaOfLaw(areaOfLaw);
+		htmlStepContext.reset();
+		journeyFactory.getCourtFinderAreaOfLawSelectionPageJourney();
+		CourtFinderAreaOfLawSelectionPage page = new CourtFinderAreaOfLawSelectionPage(driver);
+		assertTrue("Unable to reach the area of law selection page", page.verifyOnPage());
+		page.setAreaOfLaw("All courts and tribunals");
 		page.clickContinue();
 	}
 	
-
-	@When("^I enter a (?:Scottish|Northern Ireland) postcode \"(.*?)\" and area of law \"(.*?)\" and select continue$")
-	public void i_enter_a_Northern_Ireland_postcode_and_area_of_law_and_select_continue(
-			String postcode, String areaOfLaw) throws Throwable {
-		CourtfinderPostcodSearchPage page = PageFactory
-				.getCourtfinderPostcodSearchPage(driver);
-		page.setSearchPostcode(postcode);
-		page.setAreaOfLaw(areaOfLaw);
-		page.clickContinue();
+	@Given("^I am on the courtfinder area of law selection page$")
+	public void i_am_on_the_courtfinder_area_of_law_selection_page() throws Throwable {
+	    journeyFactory.getCourtFinderAreaOfLawSelectionPageJourney();
+	    assertTrue("Unable to reach the Area of Law Selection page",
+	    		  PageFactory.getCourtFinderAreaOfLawSelectionPage(driver).verifyOnPage());
 	}
+
+	@When("^I enter an area of law \"(.*?)\" and select continue$")
+	public void i_enter_an_area_of_law_and_select_continue(String areoOfLaw) throws Throwable {
+		CourtFinderAreaOfLawSelectionPage page = PageFactory.getCourtFinderAreaOfLawSelectionPage(driver);
+		page.verifyOnPage();
+	    page.setAreaOfLaw(areoOfLaw);
+	    page.clickContinue();
+	}
+
+	@When("^I enter a (?:Scottish|Northern Ireland) postcode \"(.*?)\" and select continue$")
+	public void i_enter_a_postcode_and_select_continue_(String postcode) throws Throwable {
+		htmlStepContext.setPostcode(postcode);
+	    CourtfinderPostcodeSearchPage page = PageFactory.getCourtfinderPostcodSearchPage(driver);
+	    page.verifyOnPage();
+	    page.setSearchPostcode(postcode);
+	    page.clickContinue();
+	}
+
+	@When("^I enter a postcode \"(.*?)\" and select continue$")
+	public void i_enter_a_postcode_and_select_continue(String postcode) throws Throwable {
+		htmlStepContext.setPostcode(postcode);
+	    CourtfinderPostcodeSearchPage page = PageFactory.getCourtfinderPostcodSearchPage(driver);
+	    page.verifyOnPage();
+	    page.setSearchPostcode(postcode);
+	    page.clickContinue();
+	}
+	
 
 	@Then("^I am returned an error message that Northern Ireland is not supported except for immigration$")
 	public void i_am_returned_an_error_message_that_Northern_Ireland_is_not_supported_except_for_immigration()
@@ -68,7 +89,6 @@ public class CourtFinderPostcodeSearchSteps {
 
 	@Then("^I am redirected to the selected \"(.*?)\" details page$")
 	public void i_am_redirected_to_the_selected_details_page(String court) throws Throwable {
-	    assertTrue("Unable to reach the court details page",PageFactory.getCourtFinderCourtDetailsPage(driver).verifyOnPage());
 	    assertTrue("Court title on details page is not as expected",PageFactory.getCourtFinderCourtDetailsPage(driver).verifyCourtTitle(court));
 	}
 	
@@ -121,6 +141,7 @@ public class CourtFinderPostcodeSearchSteps {
 
 	@When("^I enter a invalid postcode \"(.*?)\" and search$")
 	public void i_enter_a_invalid_postcode_and_search(String postcode) throws Throwable {
+		htmlStepContext.setPostcode(postcode);
 	    PageFactory.getCourtfinderPostcodSearchPage(driver).setSearchPostcode(postcode);
 	    PageFactory.getCourtfinderPostcodSearchPage(driver).clickContinue();
 	}
@@ -140,4 +161,11 @@ public class CourtFinderPostcodeSearchSteps {
 	         assertTrue("court not found: " + court,(PageFactory.getCourtFinderAddressSearchResultPage(driver).getCourtNameAtIndex(index+1)).equalsIgnoreCase(court));
 		}
 	}
+	
+	@Then("^the input box should contain the postcode entered$")
+	public void the_input_box_should_contain_the_postcode_entered() throws Throwable {
+	    assertTrue("Postcode is invalid", PageFactory.getCourtfinderPostcodSearchPage(driver).verifySearchPostcodeInput(htmlStepContext.getPostcode()));
+	}
+	
+	
 }

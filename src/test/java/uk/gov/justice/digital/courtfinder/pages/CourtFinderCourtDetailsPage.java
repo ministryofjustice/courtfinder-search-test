@@ -10,7 +10,7 @@ public class CourtFinderCourtDetailsPage extends SeleniumPage {
 	private By pageIdentifier = new By.ById("courts-show");
 
 	
-	private By courtTitle = new By.ByXPath(".//*[@id='content']/header/h1");
+	private By courtTitle = new By.ByXPath(".//*[@id='content']/div[2]/header/h1");
 
 	public CourtFinderCourtDetailsPage(WebDriver driver) {
 		super(driver);

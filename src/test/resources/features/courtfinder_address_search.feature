@@ -1,8 +1,8 @@
-@todo 
+
 Feature: As a citizen I need to find a court by name, address, county so I can find useful information to help me
 
 
-     
+  
 Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
 
              Given I am on the courtfinder address search page
@@ -12,9 +12,9 @@ Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
              Examples:
              |breadcrumb              |page                    |
              |home                    |courtfinder start       |
-             |Find a court or tribunal|Find a court or tribunal|
+             |Find a court or tribunal|courtfinder start       |
 
-            
+              
 Scenario: when redirected to the address search page the input searchbox is focused
 
              Given I am on the courtfinder address search page
@@ -30,7 +30,7 @@ Scenario: Go back to the address search page from the results the address inputb
              And the address search input box is in focus 
 
 
-      
+     
 Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
 
              Given I am on the courtfinder address search page
@@ -41,8 +41,7 @@ Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
              Examples:
              |breadcrumb              |page                     |
              |home                    |courtfinder start        |
-             |Find a court or tribunal|Find a court or tribunal | 
-             |Search by postcode      |Search by name or address| 
+             |Find a court or tribunal|courtfinder start        | 
              
     
 
@@ -51,6 +50,7 @@ Scenario: No address entered and user requests search prompts error
               Given I am on the courtfinder address search page
               When I select continue
               Then I am prompted to enter a address       
+
         
 Scenario Outline: Complete court name returns individual court entry in the results page
 
@@ -67,7 +67,7 @@ Scenario Outline: Complete court name returns individual court entry in the resu
                |Bath county Court and Family court|
                |Bournemouth Crown court|
  
-             
+         
  Scenario Outline: Complete court name returns court details including dx and court number
 
                Given I am on the courtfinder address search page
@@ -81,7 +81,7 @@ Scenario Outline: Complete court name returns individual court entry in the resu
                |Central Criminal Court|46700 Old Bailey|413        |                
                   
                             
-                  
+                      
 Scenario Outline: Partial court name returns result selection
 
                Given I am on the courtfinder address search page
@@ -93,7 +93,8 @@ Scenario Outline: Partial court name returns result selection
 
                |partialcourtname  |courts|
                |bournemouth       | Bournemouth and Poole County Court and Family Court,Bournemouth Crown Court,Bournemouth Magistrates' Court|
-               #|bradford court    | Bradford and Keighley Magistrates' Court and Family Court,Bradford Combined Court Centre|
+               |bradford court    | Bradford and Keighley Magistrates' Court and Family Court,Bradford Combined Court Centre|
+
 
 
 Scenario Outline: Building name returns relevant court 
@@ -111,7 +112,7 @@ Scenario Outline: Building name returns relevant court
                |peak buildings|Buxton County Court,High Peak Magistrates' Court|
                |first avenue house|Central Family Court|
                
- 
+
 Scenario Outline: Partial address (street name) will return courts with matching address
 
                Given I am on the courtfinder address search page
@@ -128,7 +129,7 @@ Scenario Outline: Partial address (street name) will return courts with matching
               |Laneham Street|Scunthorpe County Court and Family Court|
               |Secretan Way|South Shields County Court and Family Court|
               
-             
+            
 Scenario Outline: Partial address (town/city/county) will return courts with matching address
 
                Given I am on the courtfinder address search page
@@ -143,7 +144,7 @@ Scenario Outline: Partial address (town/city/county) will return courts with mat
               |London|City of London Magistrates' Court,Central Criminal Court,Mayor's and City of London Court|
               
 
-            
+              
 Scenario Outline: address search that returns no results
 
                Given I am on the courtfinder address search page
@@ -172,7 +173,8 @@ Scenario Outline: Inactive court should not be displayed
               |inactivecourt               |
               |Southport Magistrates' Court| 
 
-             
+
+            
 Scenario: Sort order will be venue,town,street,county - sub sort is on areas of law
 
                Given I am on the courtfinder address search page
@@ -195,7 +197,7 @@ Scenario: Sort order will be venue,town,street,county - sub sort is on areas of 
                |Durham Magistrates' Court                       |
                |Consett Magistrates' Court                      |
 
-
+ 
 Scenario Outline: Each court name should be a link to the respective court detail page  
 
           Given I am on the courtfinder address search page
@@ -208,6 +210,7 @@ Scenario Outline: Each court name should be a link to the respective court detai
           |Old Bailey         |Central Criminal Court                           |
           |Immigration        |North Shields Immigration and Asylum Tribunal    |
 
+
 Scenario Outline: Each court result should show the postal address 
 
           Given I am on the courtfinder address search page
@@ -215,7 +218,7 @@ Scenario Outline: Each court result should show the postal address
           Then for the "<court>" the "<postaladdress>" is displayed
           
           Examples:
-          |town_city_county   |court                       |postaladdress                                   |
+          |town_city_county   |court                       |postaladdress                       |
           |stevenage          |Stevenage Magistrates' Court|Sish Lane                           | 
           
                           

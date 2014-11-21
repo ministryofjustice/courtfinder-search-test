@@ -21,7 +21,7 @@ public class CourtFinderResultPage extends SeleniumPage {
     protected By searchByPostcodeBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[2]/a");
     protected By searchByAddressBreadcrumb = new By.ByXPath(".//*[@role='breadcrumbs']/li[2]/a");
     
-    protected String courtTitleLink = ".//*[@id='court-results']/li[%d]/p[1]/a";
+    protected String courtTitleLink = ".//*[@id='court-results']/li[%d]/p/a";
     
 	
 	public void clickHomeBreadcrumb() throws Exception {

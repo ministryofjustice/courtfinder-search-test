@@ -1,30 +1,30 @@
-@todo
+
 Feature: As a user I need to be able to make a postcode and area of law search so that it will give a list of the closest court/tribunals 
 
 
 Scenario Outline: Entering a scottish postcode prompts error only courts in uk and wales.
 
-          Given I am on the courtfinder postcode search page
-          When I enter a Scottish postcode "<postcode>" and area of law "<law>" and select continue
+          Given I am on the courtfinder area of law selection page
+          When I enter an area of law "<law>" and select continue
+          And  I enter a Scottish postcode "<postcode>" and select continue
           Then I am returned an error message that courtfinder only supports courts in England and Wales
-          
-          
+             
          Examples:
          |postcode|law                     |   
          |DG1     |Adoption                |
-         |DD5    |Children                |
+         |DD5     |Housing possession      |
          |FK21    |Civil partnership       |
-         |G12    |Divorce                 |
-         |KW2    |Bankruptcy              |
+         |G12     |Housing possession      |
+         |KW2     |Bankruptcy              |
          |PH38    |Housing possession      |
-         |PA10    |Money claims            |
+         |PA10    |Housing possession      |
          |ML10    |Probate                 |
-         |AB37     |Crime                   |
-         |DD2    |Domestic violence       |
-         |G46    |Forced marriage         |
+         |AB37    |Crime                   |
+         |DD2     |Domestic violence       |
+         |G46     |Forced marriage         |
          |ZE1     |Employment              |
          |EH27    |Social security         |
-         |HS1      |All courts and tribunals|
+         |HS1     |All courts and tribunals|
       
 
 
@@ -41,28 +41,32 @@ Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
              |Find a court or tribunal|Find a court or tribunal|
              
 
-Scenario: Clicking on the page breadcrumbs returns user to relevant page
+Scenario: Returning from the search results the postcode input box should be in focus
 
-             Given I am on the courtfinder postcode search page
-             When I enter a postcode "SG80LT" and area of law "Crime" and select continue
-             When I click on the "Search by postcode " breadcrumb
+             Given I am on the courtfinder area of law selection page
+             When I enter an area of law "Crime" and select continue
+             And  I enter a postcode "Sg8 0lt" and select continue
+             And  I click on the "Search by postcode " breadcrumb
              Then I am redirected to the "Search by postcode " page
              And the postcode search input box is in focus 
+             And the input box should contain the postcode entered
 
          
 Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
 
-             Given I am on the courtfinder postcode search page
-             When I enter a postcode "SG80LT" and area of law "Crime" and select continue
+             Given I am on the courtfinder area of law selection page
+             When I enter an area of law "Crime" and select continue
+             And  I enter a postcode "Sg8 0lt" and select continue
              When I click on the "<breadcrumb>" breadcrumb
              Then I am redirected to the "<page>" page
              
              Examples:
              |breadcrumb              |page                    |
              |home                    |courtfinder start       |
-             |Find a court or tribunal|Find a court or tribunal| 
+             |Find a court or tribunal|courtfinder start       | 
              |Search by postcode      |Search by postcode      |            
- 
+
+@todo_  
 Scenario: No postcode entered and user requests search prompts error
 
 
@@ -70,19 +74,19 @@ Scenario: No postcode entered and user requests search prompts error
           When I select continue
           Then I am prompted to enter a postcode
           
-      
+@todo       
 Scenario Outline: Entering a valid postcode and area of law returns expected courts
 
-          Given I am on the courtfinder postcode search page
-          When I enter a postcode "<postcode>" and area of law "<law>" and select continue
+          Given I am on the courtfinder area of law selection page
+          When I enter an area of law "<law>" and select continue
+          And  I enter a postcode "<postcode>" and select continue
           Then I am redirected to the postcode results displaying the closest "<courts>"
           
           Examples:
           |postcode|law              |courts                                                      |
           |SW1H9AJ |Adoption         |Inner London Family Proceedings Court,Central Family Court  |
-          |SW1H9AJ |Children         |Central Family Court                                        |
+          |SW1H9AJ |Crime            |Blackfriars Crown Court                                     |
           |SW1H9AJ |Civil partnership|Central Family Court,Sussex Family Centre at Brighton       |
-#          |CA488RT |Bankruptcy       |Aberystwyth Justice Centre                                 |
                    
 
     
@@ -113,7 +117,7 @@ Scenario Outline: Entering an Northern Ireland postcode and area of law will ret
          |BT56    |Forced marriage         |
          |BT6     |Employment              |
          |BT33    |Social security         |
- #       |BT44    |High court              |
+         |BT44    |Social security         |
          |BT      |All courts and tribunals|
 
 
@@ -165,7 +169,7 @@ Scenario Outline: Each court result should show the dx and court number
           
           Examples:
           |postcode|law                              |court                                            |dx|courtnumber|
-          |BB2 1AA  |All courts and tribunals        |Accrington Magistrates' Court                    |742020 Blackburn 10|1725|
+          |BB2 1AA  |All courts and tribunals        |Accrington County Court                         |724940 Bunley 4|103|
  
 
 

@@ -32,8 +32,10 @@ public class CourtFinderPostcodeSearchResultPage extends CourtFinderResultPage {
 	public int getCourtIndex(String courtName) throws Exception{
 		String court = "";
         //loop results
+		System.out.println("Find Court: " + courtName);
 		for (int resultIndex = 1; resultIndex <= getNumberOfResults(); resultIndex++ ){
 		   court = (getCourtNameAtIndex(resultIndex));
+		   System.out.println(court);
 		   if (court.equalsIgnoreCase(courtName)){
 				return resultIndex; 
 		   }

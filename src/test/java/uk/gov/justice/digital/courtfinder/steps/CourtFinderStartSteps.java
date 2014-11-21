@@ -33,11 +33,12 @@ public class CourtFinderStartSteps {
 	public void i_click_the_start_button() throws Throwable {
 	    PageFactory.getCourtFinderStartPage(driver).clickStartButton();
 	}
-
-	@Then("^I am redirected to the courtfinder search selection page$")
-	public void i_am_redirected_to_the_courtfinder_search_selection_page() throws Throwable {
+	
+	@Then("^I am redirected to the courtfinder area of law selection page$")
+	public void i_am_redirected_to_the_courtfinder_area_of_law_selection_page() throws Throwable {
 	    assertTrue("Unable to reach the courtfinder search selection page",
-	    		   PageFactory.getCourtfinderSearchSelectionPage(driver).verifyOnPage());
-	}	
+	    		   PageFactory.getCourtFinderAreaOfLawSelectionPage(driver).verifyOnPage());
+	}
+
 
 }

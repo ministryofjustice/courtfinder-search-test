@@ -10,7 +10,7 @@ public class CourtFinderAddressSearchPage extends CourtFinderSearchPage{
 	
 	private By pageTitle = new By.ByXPath(".//*[@class='page-header']/h1");
 	private String expectedPageTitle = "Search by name or address";
-	private By addressInput = new By.ByXPath(".//*[@name='q']");
+	private By addressInput = new By.ByXPath(".//*[@id='address']");
 
 	private By continueButton = new By.ByXPath(".//*[@id='continue']");
 
@@ -49,7 +49,6 @@ public class CourtFinderAddressSearchPage extends CourtFinderSearchPage{
 	}
 
 	public boolean verifySearchInputHasFocus() throws Exception {
-		
 		return driver.switchTo().activeElement().equals(getElement(addressInput));
 	}
 
