@@ -16,14 +16,14 @@ public class CourtfinderPostcodeSearchPage extends CourtFinderSearchPage {
 	private String expectedPageTitle = "Enter postcode";
 	
 	private By errorNoPostcodeEntered = new By.ByXPath(".//*[@class='validation-error']/span");
-	private By errorNorthernIrelandPostcode = new By.ByXPath(".//*[@class='postcode-error validation-error']/span");
+	private By errorNorthernIrelandPostcode = new By.ByXPath(".//*[@id='postcode-page']/section/p");
 	private By errorScotlandPostcode = new By.ByXPath(".//*[@id='scotland']/em");
-	private By errorInvalidPostcode = new By.ByXPath(".//*[@class='postcode-error validation-error']/span");
+	private By errorInvalidPostcode = new By.ByXPath(".//*[@id='postcode-page']/section/p");
 
 	private String expectedErrorTextNoPostcodeEntered = "You did not enter a postcode. Please try again.";
-	private String expectedErrorTextNorthernIrelandPostcode = "Aside from immigration tribunals";
+	private String expectedErrorTextNorthernIrelandPostcode = "Aside from immigration tribunals, this tool does not return results for Northern Ireland.";
 	private String expectedErrorTextScotlandPostcode = "This tool shows courts and tribunals in England and Wales";
-	private String expectedErrorTextInvalidPostcode = "Sorry, your postcode";
+	private String expectedErrorTextInvalidPostcode = "You did not enter a valid postcode. Please try again.";
 
 	
 	//private By legalProblems = new By.ByXPath(".//*[@id='aol-one']");
@@ -73,6 +73,7 @@ public class CourtfinderPostcodeSearchPage extends CourtFinderSearchPage {
 
 	public boolean verifyErrorPromptInvalidPostcode() throws Exception {
 		waitToGetElement(errorInvalidPostcode, HTTP_TIMEOUT);
+		System.out.println(getText(errorInvalidPostcode));
 		return isTextContainedInInnerText(errorInvalidPostcode, expectedErrorTextInvalidPostcode);
 	}
 

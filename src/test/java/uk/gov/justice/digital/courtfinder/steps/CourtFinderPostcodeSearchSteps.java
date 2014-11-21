@@ -100,7 +100,7 @@ public class CourtFinderPostcodeSearchSteps {
 	@Then("^I am prompted that the searched postcode could not be found$")
 	public void i_am_prompted_that_the_searched_postcode_could_not_be_found() throws Throwable {
         assertTrue("No error message displayed for entering an invalid postcode",
-        		   PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyErrorNoResultsFound());
+        		   PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptInvalidPostcode());
 	}
 	
 	@When("^I select continue$")
@@ -148,8 +148,7 @@ public class CourtFinderPostcodeSearchSteps {
 
 	@Then("^I should be prompted that the postcode is invalid$")
 	public void i_should_be_prompted_that_the_postcode_is_invalid() throws Throwable {
-	    assertTrue("Error prompt for invalid postcode not found"
-	    		   ,PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptInvalidPostcode());
+	  assertTrue("Error prompt for invalid postcode not found",PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptInvalidPostcode());
 	}
 	
 	@Then("^I am redirected to the postcode results displaying the closest \"(.*?)\"$")
