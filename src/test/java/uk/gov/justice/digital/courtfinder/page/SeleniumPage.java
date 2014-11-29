@@ -55,6 +55,10 @@ public class SeleniumPage {
     {
     	driver.get(sURL);
     }
+    
+    public boolean hasFocus(By by) throws Exception{
+    	return driver.switchTo().activeElement().equals(getElement(by));
+    }
 
 	private WebElement findElement(By by) throws Exception {
 		try {
@@ -216,6 +220,16 @@ public class SeleniumPage {
 		else
 			return value;
 	}
+
+	public String getAttributeValue(By by, String attribute) throws Exception {
+		String value = getElement(by).getAttribute(attribute);
+		if (value == null)
+			return "";
+		else
+			return value;
+	}
+	
+	
 
 	public void setText(By by, String inText) throws Exception {
 		findElement(by).clear();

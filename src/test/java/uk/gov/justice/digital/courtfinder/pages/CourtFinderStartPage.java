@@ -1,41 +1,46 @@
 package uk.gov.justice.digital.courtfinder.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.By.ByXPath;
+
 import org.openqa.selenium.WebDriver;
-
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
-
+import org.openqa.selenium.By;
 
 
 public class CourtFinderStartPage extends SeleniumPage {
-	
-	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/header/h1");
-	private String expectedPageTitleText = "Find the right court or tribunal";
-	
+	private String expectedTextOnPage = "Find the right court or tribunal";
+	private By expectedTextOnPageSelector = new By.ByXPath(
+			".//*[@id='content']/div/header/h1");
 	private By startButton = new By.ById("start-button");
-	private By addressSearchLink = new By.ByXPath(".//*[@id='search-index-page']/div/div[2]/ul/li[1]/a"); 
-	private By a2zListLink = new By.ByXPath("");
-	
-	public void clickA2ZList() throws Exception{
-		click(a2zListLink);
-	}
+	private By addressSearchLink = new By.ByXPath(
+			".//*[@id='search-index-page']/div/div[2]/ul/li[1]/a");
+	private By a2ZListLink = new By.ByXPath(
+			".//*[@id='search-index-page']/div/div[2]/ul/li[2]/a");
+	private By homeBreadcrumbLink = new By.ByXPath(
+			".//*[@id='global-breadcrumb']/ol/li/a");
 
 	public CourtFinderStartPage(WebDriver driver) {
 		super(driver);
 	}
-	
-	public void clickStartButton() throws Exception{
-		click(startButton);
-	}
-	
-	public boolean verifyOnPage() throws Exception{
+
+	public boolean verifyOnPage() throws Exception {
 		waitForPageLoaded();
-		return isInnerTextEqualToExpectedText(pageTitle, expectedPageTitleText);
+		return isTextContainedInInnerText(expectedTextOnPageSelector,
+				expectedTextOnPage);
 	}
 
-	public void clickaddressSearch() throws Exception {
+	public void clickStartButton() throws Exception {
+		click(startButton);
+	}
+
+	public void clickAddressSearchLink() throws Exception {
 		click(addressSearchLink);
 	}
 
+	public void clickA2ZListLink() throws Exception {
+		click(a2ZListLink);
+	}
+
+	public void clickHomeBreadcrumbLink() throws Exception {
+		click(homeBreadcrumbLink);
+	}
 }

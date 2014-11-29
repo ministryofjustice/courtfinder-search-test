@@ -12,7 +12,6 @@ import cucumber.api.java.en.When;
 import uk.gov.justice.digital.courtfinder.factories.JourneyFactory;
 import uk.gov.justice.digital.courtfinder.factories.PageFactory;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchPage;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
 import uk.gov.justice.digital.courtfinder.webdriver.SharedDriver;
 
 
@@ -34,67 +33,51 @@ public class CourtFinderAddressSearchSteps {
 
 	@When("^I enter a (?:partial court name|court name|building name|street name|town, city or county) \"(.*?)\" and search$")
 	public void i_enter_a_court_name_and_search(String courtName) throws Throwable {
-	    PageFactory.getCourtFinderAddressSearchPage(driver).setAddress(courtName);
+	    PageFactory.getCourtFinderAddressSearchPage(driver).setTextAddressInput(courtName);
 	    PageFactory.getCourtFinderAddressSearchPage(driver).clickContinueButton();
 	    PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyOnPage();
 	}
 	
 	@When("^I enter a (?:invalid address|inactive court) \"(.*?)\" and search$")
 	public void i_enter_a_court_name_and_search_(String courtName) throws Throwable {
-	    PageFactory.getCourtFinderAddressSearchPage(driver).setAddress(courtName);
+	    PageFactory.getCourtFinderAddressSearchPage(driver).setTextAddressInput(courtName);
 	    PageFactory.getCourtFinderAddressSearchPage(driver).clickContinueButton();
 	}
 
 	
 	@When("^I enter \"(.*?)\" and search$")
 	public void i_enter_and_search(String searchText) throws Throwable {
-	    PageFactory.getCourtFinderAddressSearchPage(driver).setAddress(searchText);
+	    PageFactory.getCourtFinderAddressSearchPage(driver).setTextAddressInput(searchText);
 	    PageFactory.getCourtFinderAddressSearchPage(driver).clickContinueButton();
 	    PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyOnPage();;
 	}
 
 	@Then("^I will be returned a single court result \"(.*?)\"$")
 	public void i_will_be_returned_a_single_court_result(String court) throws Throwable {
-	    assertTrue("Not the number of results expected",PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyNumberOfCourtsFound(1));
-	    assertTrue("Unable to find a court",PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyCourtResults(court));
+	    assertTrue("Not the number of results expected",PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyNumberOfCourtResultsText(Integer.toString(1)));
+	    assertTrue("Unable to find a court",PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyCourtName(1,court));
 	    
 	}
 	
-	@Then("^in the result page I should find within the results the following \"(.*?)\" listed$")
-	public void in_the_result_page_I_should_find_within_the_results_the_following_listed(String courts) throws Throwable {
-	    assertTrue("Unable to find a court",PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyCourtResults(courts));
-	}
 	
 	@Then("^I should be prompted that the address is invalid$")
 	public void i_should_be_prompted_that_the_address_is_invalid() throws Throwable {
         assertTrue("No error message displayed for entering an invalid address",
-     		   PageFactory.getCourtFinderAddressSearchPage(driver).verifyErrorPromptEnterInvalidAddress());
+     		   PageFactory.getCourtFinderAddressSearchPage(driver).verifyerrorInvalidAddressEntered());
 	}	
 	
 	@Then("^I am prompted to enter a address$")
 	public void i_am_prompted_to_enter_a_address() throws Throwable {
 	    assertTrue("No error message displayed for not entering a address",
-	    		   PageFactory.getCourtFinderAddressSearchPage(driver).verifyErrorPromptEnterAddress());
+	    		   PageFactory.getCourtFinderAddressSearchPage(driver).verifyerrorNoAddressEntered());
 	}
 	
 	@Then("^the results should be listed in the following order:$")
 	public void the_results_should_be_listed_in_the_following_order(List<String> courtResults) throws Throwable {
-		assertTrue(PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyCourtResultsSortOrder(courtResults));
+		for(int index=1; index < courtResults.size(); index++)
+		   assertTrue(PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyCourtName(index,courtResults.get(index)));
 	}
 	
-	@When("^I click on the \"(.*?)\" breadcrumb$")
-	public void i_click_on_the_breadcrumb(String breadcrumb) throws Throwable {
-		CourtFinderSearchPage page = PageFactory.getCourtFinderSearchPage(driver);
-	    if (breadcrumb.trim().equalsIgnoreCase("home")){
-	    	page.clickHomeBreadcrumb();
-	    } else if (breadcrumb.trim().equalsIgnoreCase("Find a court or tribunal")){
-	    	page.clickFindACourtOrTribunalBreadcrumb();
-	     } else if (breadcrumb.trim().equalsIgnoreCase("Search by postcode")){
-	    	page.clickSearchByPostcodeBreadcrumb();
-	     } else{
-		    page.clickAboutYourIssueCourtBreadcrumb();
-		 }
-	}
 
 	@Then("^I am redirected to the \"(.*?)\" page$")
 	public void i_am_redirected_to_the_page(String page) throws Throwable {
@@ -105,7 +88,7 @@ public class CourtFinderAddressSearchSteps {
 	    	//PageFactory.getCourtfinderSearchSelectionPage(driver).verifySearchByNameIsSelected();
 		    PageFactory.getCourtFinderStartPage(driver).verifyOnPage();
 	    } else if (page.trim().equalsIgnoreCase("Search by postcode")){
-	    	PageFactory.getCourtfinderPostcodSearchPage(driver).verifyOnPage();
+	    	PageFactory.getCourtFinderPostcodSearchPage(driver).verifyOnPage();
 	    } else
 	    	PageFactory.getCourtFinderAddressSearchPage(driver).verifyOnPage();
 	    	
@@ -115,16 +98,8 @@ public class CourtFinderAddressSearchSteps {
 	@Then("^the address search input box is in focus$")
 	public void the_address_search_input_box_is_in_focus() throws Throwable {
 	    assertTrue("address search box is not the focus",
-	    		   PageFactory.getCourtFinderAddressSearchPage(driver).verifySearchInputHasFocus());
+	    		   PageFactory.getCourtFinderAddressSearchPage(driver).hasFocusAddressInput());
 	}
 	
-
-	@When("^select the \"(.*?)\" link in the address search results$")
-	public void select_the_link_in_the_address_search_results(String court) throws Throwable {
-	    assertTrue("Unable to to reach address search details page",
-	    		   PageFactory.getCourtFinderAddressSearchResultPage(driver).verifyOnPage());
-	    PageFactory.getCourtFinderAddressSearchResultPage(driver).clickCourtTitle(court);
-	}
-
 
 }
