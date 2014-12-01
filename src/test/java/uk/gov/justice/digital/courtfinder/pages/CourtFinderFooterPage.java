@@ -5,9 +5,6 @@ import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 import org.openqa.selenium.By;
 
 public class CourtFinderFooterPage extends SeleniumPage {
-	private String expectedTextOnPage = "All content is available under the";
-	private By expectedTextOnPageSelector = new By.ByXPath(
-			".//*[@id='content']/div/header/h1");
 	private By footerHelp = new By.ByXPath(
 			".//*[@id='footer']/div/div/div[1]/ul/li[1]/a");
 	private By footerCookiesLink = new By.ByXPath(
@@ -24,15 +21,12 @@ public class CourtFinderFooterPage extends SeleniumPage {
 			".//*[@id='footer']/div/div/div[1]/div/p/a");
 	private By footerCrownCopyright = new By.ByXPath(
 			".//*[@id='footer']/div/div/div[2]/a");
+	private String expectedTextOnPage = "All content is available under the";
+	private By expectedTextOnPageSelector = new By.ByXPath(
+			".//*[@id='content']/div/header/h1");
 
 	public CourtFinderFooterPage(WebDriver driver) {
 		super(driver);
-	}
-
-	public boolean verifyOnPage() throws Exception {
-		waitForPageLoaded();
-		return isTextContainedInInnerText(expectedTextOnPageSelector,
-				expectedTextOnPage);
 	}
 
 	public void clickFooterHelp() throws Exception {
@@ -65,5 +59,11 @@ public class CourtFinderFooterPage extends SeleniumPage {
 
 	public void clickFooterCrownCopyright() throws Exception {
 		click(footerCrownCopyright);
+	}
+
+	public boolean verifyOnPage() throws Exception {
+		waitForPageLoaded();
+		return isTextContainedInInnerText(expectedTextOnPageSelector,
+				expectedTextOnPage);
 	}
 }

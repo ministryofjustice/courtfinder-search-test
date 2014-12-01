@@ -36,7 +36,7 @@ public class CourtFinderStartSteps {
 	
 	@Then("^I am redirected to the courtfinder area of law selection page$")
 	public void i_am_redirected_to_the_courtfinder_area_of_law_selection_page() throws Throwable {
-	    assertTrue("Unable to reach the courtfinder search selection page",
+	    assertTrue("Unable to reach the courtfinder area of law selection page",
 	    		   PageFactory.getCourtFinderAreaOfLawSearchSelectionPage(driver).verifyOnPage());
 	}
 

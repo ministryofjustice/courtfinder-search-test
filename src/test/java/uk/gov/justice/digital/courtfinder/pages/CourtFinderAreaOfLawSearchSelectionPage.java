@@ -5,9 +5,6 @@ import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 import org.openqa.selenium.By;
 
 public class CourtFinderAreaOfLawSearchSelectionPage extends SeleniumPage {
-	private String expectedTextOnPage = "About your issue";
-	private By expectedTextOnPageSelector = new By.ByXPath(
-			".//*[@id='content']/div/header/h1");
 	private By homeBreadcrumbLink = new By.ByXPath(
 			".//*[@id='global-breadcrumb']/ol/li/a");
 	private By findTheRightCourtBreadcrumbLink = new By.ByXPath(
@@ -18,24 +15,23 @@ public class CourtFinderAreaOfLawSearchSelectionPage extends SeleniumPage {
 	private By childrenRadiobutton = new By.ByXPath(".//*[@id='aol-3']");
 	private By civilPartnershipRadiobutton = new By.ByXPath(".//*[@id='aol-4']");
 	private By crimeRadiobutton = new By.ByXPath(".//*[@id='aol-5']");
-	private By divorceRadiobutton = new By.ByXPath(".//*[@id='aol-6']");
-	private By employmentRadiobutton = new By.ByXPath(".//*[@id='aol-7']");
-	private By forcedMarriageRadiobutton = new By.ByXPath(".//*[@id='aol-8']");
-	private By housingPosessionRadiobutton = new By.ByXPath(".//*[@id='aol-9']");
-	private By immigrationRadiobutton = new By.ByXPath(".//*[@id='aol-10']");
-	private By moneyClaimsRadiobutton = new By.ByXPath(".//*[@id='aol-11']");
-	private By probateRadiobutton = new By.ByXPath(".//*[@id='aol-12']");
-	private By socialSecurityRadiobutton = new By.ByXPath(".//*[@id='aol-13']");
+	private By domesticViolenceRadioButton = new By.ByXPath(".//*[@id='aol-6']");
+	private By divorceRadiobutton = new By.ByXPath(".//*[@id='aol-7']");
+	private By employmentRadiobutton = new By.ByXPath(".//*[@id='aol-8']");
+	private By forcedMarriageRadiobutton = new By.ByXPath(".//*[@id='aol-9']");
+	private By housingPosessionRadiobutton = new By.ByXPath(
+			".//*[@id='aol-10']");
+	private By immigrationRadiobutton = new By.ByXPath(".//*[@id='aol-11']");
+	private By moneyClaimsRadiobutton = new By.ByXPath(".//*[@id='aol-12']");
+	private By probateRadiobutton = new By.ByXPath(".//*[@id='aol-13']");
+	private By socialSecurityRadiobutton = new By.ByXPath(".//*[@id='aol-14']");
 	private By continueButton = new By.ByXPath(".//*[@id='continue']");
+	private String expectedTextOnPage = "About your issue";
+	private By expectedTextOnPageSelector = new By.ByXPath(
+			".//*[@id='content']/div/header/h1");
 
 	public CourtFinderAreaOfLawSearchSelectionPage(WebDriver driver) {
 		super(driver);
-	}
-
-	public boolean verifyOnPage() throws Exception {
-		waitForPageLoaded();
-		return isTextContainedInInnerText(expectedTextOnPageSelector,
-				expectedTextOnPage);
 	}
 
 	public void clickHomeBreadcrumbLink() throws Exception {
@@ -68,6 +64,10 @@ public class CourtFinderAreaOfLawSearchSelectionPage extends SeleniumPage {
 
 	public void clickCrimeRadiobutton() throws Exception {
 		click(crimeRadiobutton);
+	}
+
+	public void clickDomesticViolenceRadioButton() throws Exception {
+		click(domesticViolenceRadioButton);
 	}
 
 	public void clickDivorceRadiobutton() throws Exception {
@@ -104,5 +104,11 @@ public class CourtFinderAreaOfLawSearchSelectionPage extends SeleniumPage {
 
 	public void clickContinueButton() throws Exception {
 		click(continueButton);
+	}
+
+	public boolean verifyOnPage() throws Exception {
+		waitForPageLoaded();
+		return isTextContainedInInnerText(expectedTextOnPageSelector,
+				expectedTextOnPage);
 	}
 }

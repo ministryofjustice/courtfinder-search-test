@@ -1,12 +1,12 @@
-
+@todo
 Feature: As a citizen I need to find a court by name, address, county so I can find useful information to help me
 
 
-  
+ 
 Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
 
              Given I am on the courtfinder address search page
-             When I click on the "<breadcrumb>" breadcrumb
+             When on the courtfinder address search page I click on the "<breadcrumb>" breadcrumb
              Then I am redirected to the "<page>" page
              
              Examples:
@@ -14,34 +14,24 @@ Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
              |home                    |courtfinder start       |
              |Find a court or tribunal|courtfinder start       |
 
-              
+               
 Scenario: when redirected to the address search page the input searchbox is focused
 
              Given I am on the courtfinder address search page
              Then the address search input box is in focus                 
 
 
-Scenario: Go back to the address search page from the results the address inputbox should be focused
+Scenario Outline: Go back to the address search page from the results the address inputbox should be focused
 
              Given I am on the courtfinder address search page
              When I enter a court name "Old Bailey" and search
-             And I click on the "Search by name or address" breadcrumb
-             Then I am redirected to the "Search by name or address" page
-             And the address search input box is in focus 
-
-
-     
-Scenario Outline: Clicking on the page breadcrumbs returns user to relevant page
-
-             Given I am on the courtfinder address search page
-             When I enter a court name "Old Bailey" and search
-             And I click on the "<breadcrumb>" breadcrumb
+             And on the courtfinder address result search page I click on the "<breadcrumb>" breadcrumb
              Then I am redirected to the "<page>" page
-             
+             And the address search input box is in focus 
              Examples:
-             |breadcrumb              |page                     |
-             |home                    |courtfinder start        |
-             |Find a court or tribunal|courtfinder start        | 
+             |breadcrumb               |page                       |
+             |Search by name or address|courtfinder name or address|
+
              
     
 
@@ -67,12 +57,12 @@ Scenario Outline: Complete court name returns individual court entry in the resu
                |Bath county Court and Family court|
                |Bournemouth Crown court|
  
-         
+       
  Scenario Outline: Complete court name returns court details including dx and court number
 
                Given I am on the courtfinder address search page
                When I enter a court name "<court>" and search
-               Then for the "<court>" the dx "<dx>" and courtnumber "<courtnumber>" are displayed
+               Then for the closest court the dx "<dx>" and courtnumber "<courtnumber>" are displayed
               
               Examples:
               
@@ -81,19 +71,19 @@ Scenario Outline: Complete court name returns individual court entry in the resu
                |Central Criminal Court|46700 Old Bailey|413        |                
                   
                             
-                      
+                       
 Scenario Outline: Partial court name returns result selection
 
                Given I am on the courtfinder address search page
                When I enter a partial court name "<partialcourtname>" and search
-               Then in the result page I should find within the results the following "<courts>" listed
+               Then I will be returned court result "<courtname>" in <row> row
               
               Examples:
               
 
-               |partialcourtname  |courts|
-               |bournemouth       | Bournemouth and Poole County Court and Family Court,Bournemouth Crown Court,Bournemouth Magistrates' Court|
-               |bradford court    | Bradford and Keighley Magistrates' Court and Family Court,Bradford Combined Court Centre|
+               |partialcourtname  |courtname                                                 |row|
+               |bournemouth       |Bournemouth and Poole County Court and Family Court       |1  |
+               |bradford court    |Bradford Combined Court Centre                            |1  |
 
 
 
@@ -101,50 +91,50 @@ Scenario Outline: Building name returns relevant court
 
                Given I am on the courtfinder address search page
                When I enter a building name "<buildingname>" and search
-               Then in the result page I should find within the results the following "<courts>" listed
+               Then I will be returned court result "<courtname>" in <row> row
               
               Examples:
               
               
-               |buildingname|courts|
-               |old bailey|Central Criminal Court|
-               |Gee Street|Clerkenwell and Shoreditch County Court and Family Court| 
-               |peak buildings|Buxton County Court,High Peak Magistrates' Court|
-               |first avenue house|Central Family Court|
+               |buildingname      |courtname                                               |row|
+               |old bailey        |Central Criminal Court                                  |1  |
+               |Gee Street        |Clerkenwell and Shoreditch County Court and Family Court|1  | 
+               |peak buildings    |High Peak Magistrates' Court                            |1  |
+               |first avenue house|Court of Protection                                     |1  |
                
 
 Scenario Outline: Partial address (street name) will return courts with matching address
 
                Given I am on the courtfinder address search page
                When I enter a street name "<streetname>" and search
-               Then in the result page I should find within the results the following "<courts>" listed
+               Then I will be returned court result "<courtname>" in <row> row
               
               Examples:
               
 
-              |streetname|courts|
-              |Tenters Street|Bury County Court| 
-              |Little John Street|Chester Probate Sub-Registry|
-              |London Road |Croydon Employment Tribunal|
-              |Laneham Street|Scunthorpe County Court and Family Court|
-              |Secretan Way|South Shields County Court and Family Court|
+              |streetname        |courtname                                                |row|
+              |Tenters Street    |Bury County Court                                        |1|
+              |Little John Street|Chester Probate Sub-Registry                             |1|
+              |London Road       |Bromley Magistrates' Court                               |1|
+              |Laneham Street    |Scunthorpe Magistrates' Court and Family Court           |1|
+              |Secretan Way      |South Tyneside Magistrates' Court and Family Court       |1|
               
             
 Scenario Outline: Partial address (town/city/county) will return courts with matching address
 
                Given I am on the courtfinder address search page
                When I enter a town, city or county "<town_city_county>" and search
-               Then in the result page I should find within the results the following "<courts>" listed
+               Then I will be returned court result "<courtname>" in <row> row
               
               Examples:
               
-              |town_city_county|courts|
-              |burnley|Burnley Combined Court Centre,Burnley Magistrates' Court|
-              |bury|Bury and Rochdale Magistrates' Court,Bury County Court and Family Court,Bury St Edmunds County Court and Family Court (#157),Bury St Edmunds Crown Court (#754),Bury St Edmunds Employment Tribunal,Bury St Edmunds Magistrates' Court and Family Court (#2867)|
-              |London|City of London Magistrates' Court,Central Criminal Court,Mayor's and City of London Court|
+              |town_city_county|courtname                                    |row|
+              |burnley         |Burnley Combined Court Centre                |1|
+              |bury            |Bury St Edmunds County Court and Family Court|1|
+              |London          |West London Family Court                     |1|
               
 
-              
+             
 Scenario Outline: address search that returns no results
 
                Given I am on the courtfinder address search page
@@ -174,7 +164,7 @@ Scenario Outline: Inactive court should not be displayed
               |Southport Magistrates' Court| 
 
 
-            
+             
 Scenario: Sort order will be venue,town,street,county - sub sort is on areas of law
 
                Given I am on the courtfinder address search page
@@ -202,23 +192,23 @@ Scenario Outline: Each court name should be a link to the respective court detai
 
           Given I am on the courtfinder address search page
           When I enter "<address>" and search 
-          And select the "<court>" link in the address search results
+          And select the court link on row <row> of the address search results
           Then I am redirected to the selected "<court>" details page
           
           Examples:
-          |address            |court                                            |
-          |Old Bailey         |Central Criminal Court                           |
-          |Immigration        |North Shields Immigration and Asylum Tribunal    |
+          |address            |row|court                                            |
+          |Old Bailey         |1|Central Criminal Court                           |
+          |Immigration        |1|North Shields Immigration and Asylum Tribunal    |
 
 
 Scenario Outline: Each court result should show the postal address 
 
           Given I am on the courtfinder address search page
           When I enter a town, city or county "<town_city_county>" and search
-          Then for the "<court>" the "<postaladdress>" is displayed
+          Then for in <row> row the court- "<court>" postal address- "<postaladdress>" is displayed
           
           Examples:
-          |town_city_county   |court                       |postaladdress                       |
-          |stevenage          |Stevenage Magistrates' Court|Sish Lane                           | 
+          |town_city_county   |row|court                       |postaladdress                       |
+          |stevenage          |1  |Stevenage Magistrates' Court|Sish Lane                           | 
           
                           

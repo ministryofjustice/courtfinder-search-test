@@ -2,6 +2,7 @@ package uk.gov.justice.digital.courtfinder.factories;
 
 import org.openqa.selenium.WebDriver;
 
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderAboutYourIssuePage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderAreaOfLawSearchSelectionPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchResultPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderCourtDetailsPage;
@@ -51,6 +52,12 @@ public class PageFactory {
 	
 	public static CourtFinderAreaOfLawSearchSelectionPage getCourtFinderAreaOfLawSearchSelectionPage(WebDriver driver){
 		return new CourtFinderAreaOfLawSearchSelectionPage(driver);
+	}
+
+
+	public static CourtFinderAboutYourIssuePage getCourtFinderAboutYourIssuePage(
+			WebDriver driver) {
+		return new CourtFinderAboutYourIssuePage(driver);
 	}
 	
 }
