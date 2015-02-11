@@ -98,12 +98,11 @@ Scenario Outline: Building name returns relevant court
               
                |buildingname      |courtname                                               |row|
                |old bailey        |Central Criminal Court                                  |1  |
-               |Gee Street        |Clerkenwell and Shoreditch County Court and Family Court|1  | 
                |peak buildings    |High Peak Magistrates' Court                            |1  |
                |first avenue house|Court of Protection                                     |1  |
                
 
-Scenario Outline: Partial address (street name) will return courts with matching address
+Scenario Outline: Partial address street name will return courts with matching address
 
                Given I am on the courtfinder address search page
                When I enter a street name "<streetname>" and search
@@ -114,8 +113,7 @@ Scenario Outline: Partial address (street name) will return courts with matching
 
               |streetname        |courtname                                                |row|
               |Tenters Street    |Bury County Court                                        |1|
-              |Little John Street|Chester Probate Sub-Registry                             |1|
-              |London Road       |Bromley Magistrates' Court                               |1|
+              |London Road       |Southampton Combined Court Centre                        |1|
               |Laneham Street    |Scunthorpe Magistrates' Court and Family Court           |1|
               |Secretan Way      |South Tyneside Magistrates' Court and Family Court       |1|
               
@@ -131,7 +129,7 @@ Scenario Outline: Partial address (town/city/county) will return courts with mat
               |town_city_county|courtname                                    |row|
               |burnley         |Burnley Combined Court Centre                |1|
               |bury            |Bury St Edmunds County Court and Family Court|1|
-              |London          |West London Family Court                     |1|
+              |London          |Central London County Court (Bankruptcy)                  |1|
               
 
              
@@ -196,9 +194,9 @@ Scenario Outline: Each court name should be a link to the respective court detai
           Then I am redirected to the selected "<court>" details page
           
           Examples:
-          |address            |row|court                                            |
+          |address            |row|court                                          |
           |Old Bailey         |1|Central Criminal Court                           |
-          |Immigration        |1|North Shields Immigration and Asylum Tribunal    |
+          |Immigration        |1|Birmingham Immigration and Asylum Chamber (First Tier Tribunal)|
 
 
 Scenario Outline: Each court result should show the postal address 
