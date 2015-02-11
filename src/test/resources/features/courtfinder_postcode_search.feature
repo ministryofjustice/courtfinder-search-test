@@ -178,8 +178,8 @@ Scenario Outline: Each court result should show the postal address
           Then for the closest "<court>" the postal address  "<postaladdress>","<postaltown>","<postcode>" is displayed
           
           Examples:
-          |searchpostcode |law              |court                                           |postaladdress |postaltown|postcode|
-          |BT21           |Immigration     |Glasgow Tribunal Hearing Centre (Eagle Building)|PO Box 27105  |Glasgow   |G2 9JR  |
+          |searchpostcode |law              |court                                          |postaladdress                       |postaltown|postcode|
+          |BT21           |Immigration     |Glasgow Tribunal Hearing Centre (Eagle Building)|Eagle Building 215 Bothwell Street  |Glasgow   |G2 9JR  |
 
           
 Scenario Outline: The number of results found for a postcode search should be displayed   

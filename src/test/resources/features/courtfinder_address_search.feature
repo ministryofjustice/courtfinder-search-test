@@ -113,8 +113,6 @@ Scenario Outline: Partial address street name will return courts with matching a
 
               |streetname        |courtname                                                |row|
               |Tenters Street    |Bury County Court                                        |1|
-              |London Road       |Southampton Combined Court Centre                        |1|
-              |Laneham Street    |Scunthorpe Magistrates' Court and Family Court           |1|
               |Secretan Way      |South Tyneside Magistrates' Court and Family Court       |1|
               
             
@@ -129,7 +127,6 @@ Scenario Outline: Partial address (town/city/county) will return courts with mat
               |town_city_county|courtname                                    |row|
               |burnley         |Burnley Combined Court Centre                |1|
               |bury            |Bury St Edmunds County Court and Family Court|1|
-              |London          |Central London County Court (Bankruptcy)                  |1|
               
 
              
@@ -196,7 +193,6 @@ Scenario Outline: Each court name should be a link to the respective court detai
           Examples:
           |address            |row|court                                          |
           |Old Bailey         |1|Central Criminal Court                           |
-          |Immigration        |1|Birmingham Immigration and Asylum Chamber (First Tier Tribunal)|
 
 
 Scenario Outline: Each court result should show the postal address 
